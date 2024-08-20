@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Alice';
+  font-weight: 400;
+  src: url('/fonts/alice-regular-webfont.woff2') format(wooff2),
+    url('/fonts/alice-regular-webfont.woff') format(woff);
+}
+@font-face {
+  font-family: 'Roboto Serif';
+  font-weight: 100 900;
+  src: url('/fonts/RobotoSerif-VariableFont.ttf') format(wooff2-variations);
+}
+
+$ff-secondary: 'Alice', system-ui;
+$ff-primary: 'Roboto Serif', serif;
+
+$font-sizes: (
+  900: clamp(2.5rem, 0.5rem + 10vw, 5rem),
+  800: clamp(2.25rem, 0.5rem + 3vw, 3.25rem),
+  700: clamp(1.5rem, 0.5rem + 5vw, 2rem),
+  600: clamp(1.4rem, 0.5rem + 3vw, 1.6875rem),
+  500: 1.3125rem,
+  400: 1.125rem,
+  300: 1rem,
+);
+
+$fw-400: 400;
+$fw-700: 700;

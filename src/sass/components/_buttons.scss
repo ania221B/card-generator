@@ -1,0 +1,16 @@
+@use '../abstracts/' as *;
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+
+  &[button-type='outline'] {
+    padding-block: 0.125em;
+    padding-inline: 1.25em;
+    border: 2px solid currentColor;
+    border-radius: 50vw;
+    background-color: transparent;
+    color: #674188;
+    text-transform: capitalize;
+  }
+}

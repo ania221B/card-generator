@@ -1,0 +1,29 @@
+$sizes: (
+  4: 0.25rem,
+  8: 0.5rem,
+  12: 0.75rem,
+  16: 1rem,
+  20: 1.25rem,
+  24: 1.5rem,
+  32: 2rem,
+  36: 2.25rem,
+  48: 3rem,
+);
+
+$padding-hero: clamp(15rem, 15vh, 20rem);
+$padding-section: clamp(3rem, 10vh, 7rem);
+
+$card-body-padding: clamp(2rem, 3.5vw, 5rem);
+$card-base-width: 16rem;
+
+$grid-gap: 1.5rem;
+$flex-group-gap: 1rem;
+
+$container-padding-inline: 1rem;
+$container-max-width: 60rem;
+$container-max-width-small: 50rem;
+$container-max-width-large: 75rem;
+$container-max-width-full-bleed: 100%;
+
+$bg-min-height: 20rem;
+$bg-max-height: 35rem;

@@ -1,0 +1,9 @@
+@use '../abstracts/' as *;
+
+.badge {
+  padding-block: 0.125em;
+  padding-inline: 1.25em;
+  background-color: #674188;
+  color: #fffbf5;
+  border-radius: 50vw;
+}
