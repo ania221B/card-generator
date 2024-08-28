@@ -7,10 +7,54 @@
   &[button-type='outline'] {
     padding-block: 0.125em;
     padding-inline: 1.25em;
-    border: 2px solid currentColor;
     border-radius: 50vw;
-    background-color: transparent;
-    color: #674188;
+
+    @include get-nested-theme {
+      outline: 2px solid themify(button-outline);
+      background-color: transparent;
+      color: themify(button-outline);
+    }
+
     text-transform: capitalize;
+
+    display: grid;
+    grid-template-columns: max-content 0.5em 1.5em;
+    align-items: center;
+    will-change: color, grid-template-columns;
+    transition: grid-template-columns 300ms ease-out;
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
+
+    & > *:last-child {
+      grid-column: -2;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      display: block;
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      @include get-nested-theme {
+        background-color: themify(button-outline);
+      }
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 300ms ease-out;
+    }
+
+    &:hover {
+      grid-template-columns: max-content 1.25em 1.5em;
+      @include get-nested-theme {
+        color: themify(button-hover);
+      }
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
   }
 }
