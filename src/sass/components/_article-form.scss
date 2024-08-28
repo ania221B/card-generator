@@ -1,0 +1,90 @@
+@use '../abstracts/' as *;
+
+.article-form {
+  max-width: 30rem;
+  padding-inline: $card-padding;
+  padding-block: $card-padding;
+  border-radius: $br-medium;
+  background-image: linear-gradient(
+    to bottom right,
+    clr(neutral, 900),
+    clr(neutral, 800)
+  );
+  position: relative;
+
+  &::after,
+  fieldset::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background-image: linear-gradient(to bottom right, #674188, #c8a1e0);
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  fieldset {
+    display: grid;
+    gap: 1.25em;
+    border: none;
+    border-radius: inherit;
+    position: relative;
+  }
+
+  &__control-wrapper {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 0.25em;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 0.125em;
+      width: 100%;
+      background-image: linear-gradient(to right, #674188, #c8a1e0);
+      transform: scaleY(1);
+      transition: transform 300ms ease-out;
+    }
+
+    &:focus-within::after {
+      transform: scaleY(2);
+    }
+  }
+
+  label {
+    font-size: fs(300);
+    font-weight: $fw-700;
+    color: clr(primary, 100);
+    text-transform: uppercase;
+  }
+
+  input,
+  textarea,
+  select {
+    border: none;
+    background: none;
+    padding-block: 0.25em;
+    padding-inline: 0.5em;
+  }
+
+  input,
+  textarea {
+    color: clr(neutral, 100);
+  }
+
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+  }
+
+  textarea {
+    width: 100%;
+  }
+
+  select {
+    appearance: none;
+    color: clr(primary, 100);
+    background-color: inherit;
+  }
+}
