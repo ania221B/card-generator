@@ -2,11 +2,13 @@
 .card {
   --flow-spacer: 1.25em;
   max-width: 50rem;
-  color: #f7efe5;
-  background-image: linear-gradient(to bottom right, #674188, #c8a1e0);
-  padding-inline: 1.25em;
-  padding-block: 1.25em;
-  border-radius: 0.75em;
+  @include get-theme {
+    color: themify(card-text);
+    background-image: themify(card-bg-gradient);
+  }
+  padding-inline: $card-padding;
+  padding-block: $card-padding;
+  border-radius: $br-medium;
 
   display: grid;
   grid-auto-flow: row;
@@ -28,12 +30,14 @@
   }
 
   &__content__meta {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: max-content;
+    display: flex;
+    // grid-auto-flow: column;
+    // grid-template-columns: max-content fit-content fit-content;
     gap: 0.75em;
+    justify-items: center;
     align-items: center;
     font-size: fs(300);
+    text-align: center;
   }
 
   &__content footer {
@@ -64,14 +68,16 @@
 
   @include mq(small) {
     grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+    grid-template-columns: 0.75fr 1fr;
     grid-auto-rows: min-content;
     column-gap: 1.25em;
 
     &__img {
       grid-column: 1;
       grid-row: span 2;
-      background-color: #131414;
+      @include get-theme {
+        background-color: themify(card-img-bg);
+      }
 
       img {
         aspect-ratio: 1;
@@ -82,6 +88,16 @@
     &__content {
       grid-column: 2;
       grid-row: 1;
+    }
+
+    &__content__meta {
+      display: flex;
+      // grid-auto-flow: column;
+      // grid-template-columns: max-content fit-content fit-content;
+      gap: 0.75em;
+      justify-items: start;
+      align-items: center;
+      font-size: fs(300);
     }
 
     .button {
