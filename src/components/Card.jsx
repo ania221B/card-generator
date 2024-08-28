@@ -1,7 +1,8 @@
 function Card ({ article }) {
-  const { category, title, body, author, readTime, date, dateTime } = article
+  const { category, title, body, author, readTime, date, dateTime, theme } =
+    article
   return (
-    <article className='coffee-time card flow'>
+    <article className={`${theme} card flow`}>
       <div className='card__img'>
         <img
           src='./images/lidiya-pavlikova-y_gKWLrw3N4-unsplash.jpg'

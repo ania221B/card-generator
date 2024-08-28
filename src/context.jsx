@@ -7,6 +7,7 @@ export function useGlobalContext () {
 }
 
 function AppContext ({ children }) {
+  const [defaultTheme, setDefaultTheme] = useState('soft-purple')
   const [article, setArticle] = useState({
     id: nanoid(),
     category: '',
@@ -14,7 +15,8 @@ function AppContext ({ children }) {
     body: '',
     author: '',
     readTime: '',
-    date: ''
+    date: '',
+    theme: defaultTheme
   })
   const [defaultArticle, setDefaultArticle] = useState({
     id: nanoid(),
@@ -24,7 +26,8 @@ function AppContext ({ children }) {
     author: 'Lucy Whitmore',
     readTime: 4,
     date: getFormatedDate(new Date(2024, 7, 19)),
-    dateTime: getFormatedDate(new Date(2024, 7, 19))
+    dateTime: getFormatedDate(new Date(2024, 7, 19)),
+    theme: defaultTheme
   })
   const [articleList, setArticleList] = useState([])
 
@@ -34,7 +37,7 @@ function AppContext ({ children }) {
 
   function handleSubmission (e) {
     e.preventDefault()
-    const { category, title, body, author } = article
+    const { category, title, body, author, theme } = article
     if (!category || !title || !body || !author) {
       alert('Please fill in all form fields.')
       return
@@ -50,7 +53,8 @@ function AppContext ({ children }) {
         author,
         readTime: calculateReadingTime(body),
         date: getFormatedDate(new Date()),
-        dateTime: getDateTimeString(new Date())
+        dateTime: getDateTimeString(new Date()),
+        theme
       }
     ])
     setArticle({
@@ -60,7 +64,8 @@ function AppContext ({ children }) {
       body: '',
       author: '',
       readTime: '',
-      date: ''
+      date: '',
+      theme: defaultTheme
     })
   }
 

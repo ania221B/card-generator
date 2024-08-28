@@ -2,6 +2,7 @@
 @use 'sass:meta';
 @use 'sass:math';
 @use 'breakpoints' as *;
+@use 'themes' as *;
 
 @mixin mq($size) {
   @if (map.has-key($breakpoints, $size)) {
@@ -20,5 +21,43 @@
     }
   } @else {
     @error 'Provided value of #{$size} is not in the $breakponts map. Use a value from $breakpoints map or a number with a unit';
+  }
+}
+
+@mixin get-theme() {
+  @each $theme, $map in $card-themes {
+    &.#{$theme} {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map.get(map.get($card-themes, $theme), '#{$key}');
+        $theme-map: map.merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin get-nested-theme() {
+  @each $theme, $map in $card-themes {
+    .#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map.get(map.get($card-themes, $theme), '#{$key}');
+        $theme-map: map.merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
   }
 }

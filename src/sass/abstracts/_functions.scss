@@ -1,7 +1,8 @@
 @use 'sass:map';
-@use 'color-palette' as *;
+@use 'themes' as *;
 @use 'typography' as *;
 @use 'sizes' as *;
+@use 'mixins' as *;
 
 @function clr($color, $shade) {
   @if map.has-key($colors, $color, $shade) {
@@ -24,5 +25,13 @@
     @return map.get($sizes, $size);
   } @else {
     @error '$sizes does not have that size!';
+  }
+}
+
+@function themify($key) {
+  @if map.has-key($theme-map, $key) {
+    @return map.get($theme-map, $key);
+  } @else {
+    @error '$theme-map does not have that key!';
   }
 }
