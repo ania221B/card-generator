@@ -7,7 +7,9 @@ export function useGlobalContext () {
 }
 
 function AppContext ({ children }) {
+  const [step, setStep] = useState(1)
   const [defaultTheme, setDefaultTheme] = useState('soft-purple')
+  const [defaultAvatar, setDefaultAvatar] = useState('diagonal-stripes')
   const [article, setArticle] = useState({
     id: nanoid(),
     category: '',
@@ -16,7 +18,8 @@ function AppContext ({ children }) {
     author: '',
     readTime: '',
     date: '',
-    theme: defaultTheme
+    theme: defaultTheme,
+    avatar: defaultAvatar
   })
   const [defaultArticle, setDefaultArticle] = useState({
     id: nanoid(),
@@ -27,7 +30,8 @@ function AppContext ({ children }) {
     readTime: 4,
     date: getFormatedDate(new Date(2024, 7, 19)),
     dateTime: getFormatedDate(new Date(2024, 7, 19)),
-    theme: defaultTheme
+    theme: defaultTheme,
+    avatar: defaultAvatar
   })
   const [articleList, setArticleList] = useState([])
 
@@ -37,7 +41,7 @@ function AppContext ({ children }) {
 
   function handleSubmission (e) {
     e.preventDefault()
-    const { category, title, body, author, theme } = article
+    const { category, title, body, author, theme, avatar } = article
     if (!category || !title || !body || !author) {
       alert('Please fill in all form fields.')
       return
@@ -47,14 +51,15 @@ function AppContext ({ children }) {
       ...articleList,
       {
         id: nanoid(),
-        category,
-        title,
+        category: makeCapitalizedText(category),
+        title: makeCapitalizedText(title),
         body: shortenText(body),
-        author,
+        author: makeCapitalizedText(author),
         readTime: calculateReadingTime(body),
         date: getFormatedDate(new Date()),
         dateTime: getDateTimeString(new Date()),
-        theme
+        theme,
+        avatar
       }
     ])
     setArticle({
@@ -65,8 +70,30 @@ function AppContext ({ children }) {
       author: '',
       readTime: '',
       date: '',
-      theme: defaultTheme
+      theme: defaultTheme,
+      avatar: defaultAvatar
     })
+    setStep(1)
+  }
+
+  function increaseStep () {
+    setStep(currentStep => {
+      return currentStep + 1
+    })
+  }
+  function decreaseStep () {
+    setStep(currentStep => {
+      return currentStep - 1
+    })
+  }
+
+  function displayNextStep (e) {
+    e.preventDefault()
+    increaseStep()
+  }
+  function displayPrevStep (e) {
+    e.preventDefault()
+    decreaseStep()
   }
 
   function shortenText (text) {
@@ -112,9 +139,32 @@ function AppContext ({ children }) {
     const day = date.getDate()
     return `${year}-${month}-${day}`
   }
+
+  function makeHyphenatedLowerCase (string) {
+    return string.toLowerCase().replace(' ', '-')
+  }
+
+  function makeCapitalizedText (string) {
+    const capitalized = []
+    if (string.includes(' ')) {
+      string.split(' ').forEach(item => {
+        const newItem = item.substring(0, 1).toUpperCase() + item.substring(1)
+        capitalized.push(newItem)
+      })
+    } else {
+      string.split('-').forEach(item => {
+        const newItem = item.substring(0, 1).toUpperCase() + item.substring(1)
+        capitalized.push(newItem)
+      })
+    }
+    return capitalized.join(' ')
+  }
+
   return (
     <GlobalContext.Provider
       value={{
+        step,
+        setStep,
         article,
         setArticle,
         defaultArticle,
@@ -123,7 +173,12 @@ function AppContext ({ children }) {
         setArticleList,
         handleChange,
         handleSubmission,
-        getFormatedDate
+
+        displayNextStep,
+        displayPrevStep,
+        getFormatedDate,
+        makeHyphenatedLowerCase,
+        makeCapitalizedText
       }}
     >
       {children}
