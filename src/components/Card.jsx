@@ -1,6 +1,15 @@
 function Card ({ article }) {
-  const { category, title, body, author, readTime, date, dateTime, theme } =
-    article
+  const {
+    category,
+    title,
+    body,
+    author,
+    readTime,
+    date,
+    dateTime,
+    theme,
+    avatar
+  } = article
   return (
     <article className={`${theme} card flow`}>
       <div className='card__img'>
@@ -25,12 +34,13 @@ function Card ({ article }) {
         <p>{body}</p>
         <footer>
           <div className='card__content__author'>
-            <picture>
+            {/* <picture>
               <img
                 src='./images/pexels-lucas-pezeta-1878522.jpg'
                 alt='Lucy Whitmore'
               />
-            </picture>
+            </picture> */}
+            <div className={`avatar bg-${avatar}`}></div>
             <p>{author}</p>
           </div>
         </footer>
