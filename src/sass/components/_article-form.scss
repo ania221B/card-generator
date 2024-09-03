@@ -30,6 +30,11 @@
     position: relative;
   }
 
+  legend {
+    margin: auto;
+    padding: 1.5rem;
+  }
+
   &__control-wrapper {
     display: grid;
     grid-auto-flow: row;
