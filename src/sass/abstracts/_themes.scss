@@ -19,6 +19,8 @@ $card-themes: (
     card-bg-gradient: linear-gradient(to bottom right, #674188, #c8a1e0),
     button-outline: #674188,
     button-hover: #f7efe5,
+    bg-light: #e2bfd9,
+    bg-dark: #674188,
   ),
   soft-blue: (
     card-text: #fffbf4,
@@ -27,6 +29,8 @@ $card-themes: (
     card-bg-gradient: linear-gradient(to bottom right, #3aa6b9, #f9e2af),
     button-outline: #3aa6b9,
     button-hover: #fffbf4,
+    bg-light: #f9e2af,
+    bg-dark: #3aa6b9,
   ),
   stormy-pink: (
     card-text: #fdf0f0,
@@ -35,6 +39,8 @@ $card-themes: (
     card-bg-gradient: linear-gradient(to bottom right, #f1b4bb, #1f4172),
     button-outline: #223052,
     button-hover: #fdf0f0,
+    bg-light: rgba(#f1b4bb, 0.5),
+    bg-dark: #1f4172,
   ),
   vintage-pink: (
     card-text: #f9f9e0,
@@ -43,6 +49,8 @@ $card-themes: (
     card-bg-gradient: linear-gradient(to bottom right, #aa3c63, #ffd0d0),
     button-outline: #0b8494,
     button-hover: #f9f9e0,
+    bg-light: #ffd0d0,
+    bg-dark: #0b8494,
   ),
   coffee-time: (
     card-text: #fefaf6,
@@ -51,6 +59,8 @@ $card-themes: (
     card-bg-gradient: linear-gradient(to bottom right, #af8f6f, #eadbc8),
     button-outline: #102c57,
     button-hover: #fefaf6,
+    bg-light: #eadbc8,
+    bg-dark: #102c57,
   ),
   summer: (
     card-text: #fff5e4,
@@ -59,6 +69,8 @@ $card-themes: (
     card-bg-gradient: linear-gradient(to bottom right, #2c7865, #c1d8c3),
     button-outline: #cd5c08,
     button-hover: #fff5e4,
+    bg-light: #c1d8c3,
+    bg-dark: #cd5c08,
   ),
   nature: (
     card-text: #d6efd8,
@@ -67,15 +79,7 @@ $card-themes: (
     card-bg-gradient: linear-gradient(to bottom right, #0d7c66, #80af81),
     button-outline: #0a6847,
     button-hover: #d6efd8,
+    bg-light: #80af81,
+    bg-dark: #0a6847,
   ),
 );
-
-$clr-neutral-100: rgba(254, 250, 246);
-$clr-neutral-200: #eadbc8;
-$clr-neutral-400: rgba(218, 192, 163);
-
-$clr-primary-300: rgba(0, 157, 255);
-$clr-primary-400: rgba(1, 116, 190);
-$clr-primary-600: rgba(1, 90, 146);
-$clr-primary-800: rgba(16, 44, 87);
-$clr-primary-900: rgba(10, 21, 37);
