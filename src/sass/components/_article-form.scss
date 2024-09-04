@@ -1,7 +1,8 @@
 @use '../abstracts/' as *;
 
 .article-form {
-  max-width: 30rem;
+  // max-width: 30rem;
+  min-height: 34.7rem;
   padding-inline: $card-padding;
   padding-block: $card-padding;
   border-radius: $br-medium;
@@ -10,16 +11,24 @@
     clr(neutral, 900),
     clr(neutral, 800)
   );
+
+  display: grid;
   position: relative;
 
-  &::after,
-  fieldset::after {
+  &::after {
     content: '';
     position: absolute;
-    inset: -2px;
+    inset: -1px;
     background-image: linear-gradient(to bottom right, #674188, #c8a1e0);
     border-radius: inherit;
     z-index: -1;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    font-size: fs(500);
+    font-weight: $fw-100;
+    letter-spacing: 0.2em;
   }
 
   fieldset {
@@ -28,11 +37,8 @@
     border: none;
     border-radius: inherit;
     position: relative;
-  }
 
-  legend {
-    margin: auto;
-    padding: 1.5rem;
+    padding: 0;
   }
 
   &__control-wrapper {
@@ -41,27 +47,52 @@
     gap: 0.25em;
     position: relative;
 
-    &::after {
+    &::after,
+    &::before {
       content: '';
       position: absolute;
       inset: auto 0 0 0;
-      height: 0.125em;
+      height: 1px;
       width: 100%;
-      background-image: linear-gradient(to right, #674188, #c8a1e0);
-      transform: scaleY(1);
-      transition: transform 300ms ease-out;
     }
 
+    &::after {
+      background-color: rgba(clr(neutral, 100), 0.5);
+      transition: opacity 600ms ease-out;
+    }
+
+    &::before {
+      background-image: linear-gradient(
+        to left,
+        clr(primary, 700),
+        clr(primary, 100)
+      );
+      transform: scaleX(0);
+      transition: transform 400ms ease-out;
+    }
+
+    &:focus-within::before {
+      transform: scaleX(1);
+    }
     &:focus-within::after {
-      transform: scaleY(2);
+      opacity: 0;
     }
   }
 
-  label {
+  label,
+  legend {
     font-size: fs(300);
-    font-weight: $fw-700;
+    font-weight: $fw-100;
     color: clr(primary, 100);
     text-transform: uppercase;
+  }
+
+  label {
+    margin-block-start: 1.5em;
+  }
+  legend {
+    padding: 0;
+    margin-block: 1.5em;
   }
 
   input,
@@ -91,5 +122,21 @@
     appearance: none;
     color: clr(primary, 100);
     background-color: inherit;
+  }
+
+  .buttons {
+    align-self: end;
+    padding-block-start: 1.5em;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0;
+
+    & > *:first-child {
+      justify-self: start;
+    }
+
+    & > *:last-child {
+      justify-self: end;
+    }
   }
 }
