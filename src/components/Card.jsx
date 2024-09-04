@@ -34,12 +34,6 @@ function Card ({ article }) {
         <p>{body}</p>
         <footer>
           <div className='card__content__author'>
-            {/* <picture>
-              <img
-                src='./images/pexels-lucas-pezeta-1878522.jpg'
-                alt='Lucy Whitmore'
-              />
-            </picture> */}
             <div className={`avatar bg-${avatar}`}></div>
             <p>{author}</p>
           </div>
@@ -49,7 +43,7 @@ function Card ({ article }) {
         href='http://'
         target='_blank'
         rel='noopener noreferrer'
-        className='button'
+        className='button link-button'
         button-type='outline'
       >
         <span>Read full article</span>

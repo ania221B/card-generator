@@ -18,7 +18,12 @@ function ArticleForm () {
         <ArticleInfo></ArticleInfo>
 
         <div className='buttons'>
-          <button type='button' onClick={displayNextStep}>
+          <button
+            type='button'
+            onClick={displayNextStep}
+            className='button'
+            button-type='primary'
+          >
             Next
           </button>
         </div>
@@ -36,10 +41,20 @@ function ArticleForm () {
         <ArticleContent></ArticleContent>
 
         <div className='buttons'>
-          <button type='button' onClick={displayPrevStep}>
+          <button
+            type='button'
+            onClick={displayPrevStep}
+            className='button'
+            button-type='outline'
+          >
             Back
           </button>
-          <button type='button' onClick={displayNextStep}>
+          <button
+            type='button'
+            onClick={displayNextStep}
+            className='button'
+            button-type='primary'
+          >
             Next
           </button>
         </div>
@@ -57,10 +72,20 @@ function ArticleForm () {
         <ArticleTheme></ArticleTheme>
 
         <div className='buttons'>
-          <button type='button' onClick={displayPrevStep}>
+          <button
+            type='button'
+            onClick={displayPrevStep}
+            className='button'
+            button-type='outline'
+          >
             Back
           </button>
-          <button type='button' onClick={displayNextStep}>
+          <button
+            type='button'
+            onClick={displayNextStep}
+            className='button'
+            button-type='primary'
+          >
             Next
           </button>
         </div>
@@ -78,10 +103,15 @@ function ArticleForm () {
         <ArticleAvatar></ArticleAvatar>
 
         <div className='buttons'>
-          <button type='button' onClick={displayPrevStep}>
+          <button
+            type='button'
+            onClick={displayPrevStep}
+            className='button'
+            button-type='outline'
+          >
             Back
           </button>
-          <button className='button' type='submit'>
+          <button className='button' type='submit' button-type='primary'>
             Generate
           </button>
         </div>
