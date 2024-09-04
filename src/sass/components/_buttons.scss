@@ -75,7 +75,7 @@
   text-transform: capitalize;
 
   @include get-nested-theme {
-    outline: 1.5px solid themify(button-outline);
+    border: 2px solid themify(button-outline);
     background-color: transparent;
     color: themify(button-outline);
   }
