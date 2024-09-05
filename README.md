@@ -1,82 +1,48 @@
 # About
 
-- This template aims to speed up setting up and working on a project by providing basic code that you can reuse in your works
-- it uses Vite, React and Sass
+- **Cardify** is a dynamic and customizable article preview card generator. With Cardify, you can create preview cards for articles by selecting themes, avatars, and filling out content through a multistep form.
+- Built using **React.js** and **SCSS**, this project allows you to generate personalized cards with calculated read time, category, and more
 - The Sass files organization is based on [the 7-1 pattern](https://sass-guidelin.es/#the-7-1-pattern)
 
-# How to use
+## Features
 
-- Once you have the template in your repos, you can use it as a base for your project
+- **Multistep Form**: Input the article's category, title, author's name, and content in a step-by-step flow.
+- **Themes & Avatars**: Choose from 7 color themes and 4 unique avatar patterns to customize your card.
+- **Dynamic Card Preview**: Cards display:
+  - Selected theme and avatar
+  - Chosen category
+  - Article title
+  - Author's name
+  - Automatically calculated read time
+  - Current date
+  - A preview of the article content, shortened to the first 25 words.
+- **Responsive Design**: Built with **container queries** for a smooth, responsive experience across devices.
+- **Customization**: Further improvements coming soon, including theme and avatar previews, as well as customizable images.
 
-## With GitHub
+## Usage
 
-1. Go to GitHub
-2. Find the repo with the template
-3. Click the **Use this template** button on the **Code** tab
-4. Enter the name for a new repo with the project you're going to work on
-5. Add the description if you want
-6. Choose if you want it to be public or private
-7. Click **Create repository from template** button
-8. A new repo based on the template will be created
+1. Navigate through the multistep form to input your article's information (category, title, author, and content).
+2. Choose a theme and avatar to personalize your article card.
+3. Generate card, which includes the calculated read time and a snippet of the article content - it will appear below the form.
 
-## With degit
+## Project Status
 
-1. Install [degit](https://github.com/Rich-Harris/degit), if you don't have it yet
+Cardify is an ongoing project. Currently, most of the core functionality is implemented, including theme selection and card generation. However, there are still areas for improvement, such as:
 
-```
-npm install -g degit
-```
+- Adding previews for themes and avatars.
+- Replacing the default image with customizable options.
+- Refining the design and user experience.
 
-2. Open up the terminal and use:
+Feedback is welcome!
 
-```
-degit github-user-name/template-mame my-new-project
-```
+# Useful resources
 
-where:
-
-- `github-user-name` is the username you use on GitHub
-- `template-name` is the name of the template that will be base of your project (such as `website-starter-react-template`)
-- `my-new-project` name of the project you're going to work on
-
-In my case the above could look the following:
-
-```
-degit ania221b/website-starter-react-template to-do-list
-```
-
-You can use the terminal in VS Code, Command Prompt, Windows Powershell or a tool like [Hyper](https://hyper.is/)
-
-3. Navigate to your new project, so:
-
-```
-cd my-new-project
-```
-
-4. Perform the installation
-
-```
-npm install
-```
-
-5. Open your project up in VS code
-
-```
-code .
-```
+- [Pure CSS Custom Styled Radio Buttons](https://moderncss.dev/pure-css-custom-styled-radio-buttons/) - an article by [Stephanie Eckles](https://thinkdobecreate.com/) explaining how to add custom styling to a radio button
+- [CSS Background Pattern Generator](https://10015.io/tools/css-background-pattern-generator) - one in a buldle of super useful tools that gets you gradients for different fun patterns
 
 # Acknowledgements
 
-- This template was build as part of [Beyond CSS](https://www.beyondcss.dev/) course by [Kevin Powell](https://www.kevinpowell.co/)
-- You can find Kevin's template on [his GitHub](https://github.com/kevin-powell)
-
----
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Inspired by [Kevin Powell](https://www.kevinpowell.co/)'s newsletter on making your frontend projects stand out.
+- I used this great tool created by [Fatih Telis](https://github.com/fatihtelis) to generate patterns for avatars.
+- Built with [React.js](https://reactjs.org/) and [SCSS](https://sass-lang.com/).
+-
