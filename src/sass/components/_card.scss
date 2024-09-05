@@ -80,7 +80,7 @@
     &__img {
       grid-column: 1;
       grid-row: span 2;
-      @include get-theme {
+      @include get-nested-theme {
         background-color: themify(card-img-bg);
       }
 
