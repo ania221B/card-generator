@@ -10,5 +10,5 @@
     color: themify(card-text);
   }
   border-radius: $br-medium;
-  text-wrap: nowrap;
+  min-width: fit-content;
 }
