@@ -17,15 +17,17 @@ function ArticleForm () {
       >
         <ArticleInfo></ArticleInfo>
 
-        <div className='buttons'>
-          <button
-            type='button'
-            onClick={displayNextStep}
-            className='button'
-            button-type='primary'
-          >
-            Next
-          </button>
+        <div className='button-wrapper'>
+          <div className='buttons'>
+            <button
+              type='button'
+              onClick={displayNextStep}
+              className='button'
+              button-type='primary'
+            >
+              Next
+            </button>
+          </div>
         </div>
       </form>
     )
@@ -40,23 +42,25 @@ function ArticleForm () {
       >
         <ArticleContent></ArticleContent>
 
-        <div className='buttons'>
-          <button
-            type='button'
-            onClick={displayPrevStep}
-            className='button'
-            button-type='outline'
-          >
-            Back
-          </button>
-          <button
-            type='button'
-            onClick={displayNextStep}
-            className='button'
-            button-type='primary'
-          >
-            Next
-          </button>
+        <div className='button-wrapper'>
+          <div className='buttons'>
+            <button
+              type='button'
+              onClick={displayPrevStep}
+              className='button'
+              button-type='outline'
+            >
+              Back
+            </button>
+            <button
+              type='button'
+              onClick={displayNextStep}
+              className='button'
+              button-type='primary'
+            >
+              Next
+            </button>
+          </div>
         </div>
       </form>
     )
@@ -71,23 +75,25 @@ function ArticleForm () {
       >
         <ArticleTheme></ArticleTheme>
 
-        <div className='buttons'>
-          <button
-            type='button'
-            onClick={displayPrevStep}
-            className='button'
-            button-type='outline'
-          >
-            Back
-          </button>
-          <button
-            type='button'
-            onClick={displayNextStep}
-            className='button'
-            button-type='primary'
-          >
-            Next
-          </button>
+        <div className='button-wrapper'>
+          <div className='buttons'>
+            <button
+              type='button'
+              onClick={displayPrevStep}
+              className='button'
+              button-type='outline'
+            >
+              Back
+            </button>
+            <button
+              type='button'
+              onClick={displayNextStep}
+              className='button'
+              button-type='primary'
+            >
+              Next
+            </button>
+          </div>
         </div>
       </form>
     )
@@ -102,18 +108,20 @@ function ArticleForm () {
       >
         <ArticleAvatar></ArticleAvatar>
 
-        <div className='buttons'>
-          <button
-            type='button'
-            onClick={displayPrevStep}
-            className='button'
-            button-type='outline'
-          >
-            Back
-          </button>
-          <button className='button' type='submit' button-type='primary'>
-            Generate
-          </button>
+        <div className='button-wrapper'>
+          <div className='buttons'>
+            <button
+              type='button'
+              onClick={displayPrevStep}
+              className='button'
+              button-type='outline'
+            >
+              Back
+            </button>
+            <button className='button' type='submit' button-type='primary'>
+              Generate
+            </button>
+          </div>
         </div>
       </form>
     )

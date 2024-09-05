@@ -5,7 +5,7 @@ function ThemeItem ({ themeName, article }) {
   const { handleChange, makeCapitalizedText } = useGlobalContext()
   const upperCaseName = makeCapitalizedText(themeName)
   return (
-    <div>
+    <div className='article-form__radio-wrapper'>
       <input
         type='radio'
         name='theme'

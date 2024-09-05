@@ -1,16 +1,12 @@
 @use '../abstracts/' as *;
 
 .article-form {
-  // max-width: 30rem;
-  min-height: 34.7rem;
-  padding-inline: $card-padding;
-  padding-block: $card-padding;
+  min-height: 42rem;
+  padding-inline: $card-padding * 2;
+  padding-block: $card-padding * 3;
   border-radius: $br-medium;
-  background-image: linear-gradient(
-    to bottom right,
-    clr(neutral, 900),
-    clr(neutral, 800)
-  );
+
+  background-color: clr(neutral, 900);
 
   display: grid;
   position: relative;
@@ -27,13 +23,12 @@
   h2 {
     text-transform: uppercase;
     font-size: fs(500);
-    font-weight: $fw-100;
+    font-weight: $fw-400;
     letter-spacing: 0.2em;
   }
 
   fieldset {
     display: grid;
-    gap: 1.25em;
     border: none;
     border-radius: inherit;
     position: relative;
@@ -44,7 +39,7 @@
   &__control-wrapper {
     display: grid;
     grid-auto-flow: row;
-    gap: 0.25em;
+    gap: 0.5em;
     position: relative;
 
     &::after,
@@ -79,20 +74,24 @@
     }
   }
 
+  * + &__control-wrapper {
+    margin-block-start: 3em;
+  }
+  * + &__radio-wrapper {
+    margin-block-start: 1.5em;
+  }
+
   label,
   legend {
     font-size: fs(300);
-    font-weight: $fw-100;
+    font-weight: $fw-400;
     color: clr(primary, 100);
     text-transform: uppercase;
   }
 
-  label {
-    margin-block-start: 1.5em;
-  }
   legend {
     padding: 0;
-    margin-block: 1.5em;
+    margin-block-start: 3em;
   }
 
   input,
@@ -114,6 +113,42 @@
     outline: none;
   }
 
+  input[type='radio'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: none;
+    margin: 0;
+    color: clr(primary, 100);
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.0625em solid clr(primary, 100);
+    border-radius: 50%;
+
+    display: grid;
+    place-content: center;
+  }
+
+  input[type='radio']::before {
+    content: '';
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 200ms transform ease-in-out;
+    box-shadow: inset 1em 1em clr(primary, 100);
+  }
+
+  input[type='radio']:checked::before {
+    transform: scale(1);
+  }
+
+  &__radio-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 0.75em;
+    align-items: center;
+  }
+
   textarea {
     width: 100%;
   }
@@ -124,12 +159,32 @@
     background-color: inherit;
   }
 
-  .buttons {
+  .button-wrapper {
     align-self: end;
-    padding-block-start: 1.5em;
+    padding-block-start: 3em;
+    container-type: inline-size;
+    container-name: buttonContainer;
+
+    @container buttonContainer (max-width: 20em) {
+      .buttons {
+        grid-auto-flow: row;
+        gap: 1.5em;
+
+        & > *:first-child {
+          justify-self: stretch;
+        }
+
+        & > *:last-child {
+          justify-self: stretch;
+        }
+      }
+    }
+  }
+
+  .buttons {
     display: grid;
+
     grid-auto-flow: column;
-    gap: 0;
 
     & > *:first-child {
       justify-self: start;

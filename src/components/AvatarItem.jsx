@@ -5,7 +5,7 @@ function AvatarItem ({ avatarName, article }) {
   const { handleChange, makeCapitalizedText } = useGlobalContext()
   const upperCaseName = makeCapitalizedText(avatarName)
   return (
-    <div>
+    <div className='article-form__radio-wrapper'>
       <input
         type='radio'
         name='avatar'
