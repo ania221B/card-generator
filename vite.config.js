@@ -5,5 +5,16 @@ import htmlPurge from 'vite-plugin-purgecss'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/card-generator/',
-  plugins: [react(), htmlPurge()]
+  plugins: [
+    react(),
+    htmlPurge({
+      content: ['./src/**/*.jsx', './src/**/*.scss'],
+      safelist: [
+        'bg-chequered',
+        'bg-polka-dot',
+        'bg-checked',
+        'bg-diagonal-stripes'
+      ]
+    })
+  ]
 })
