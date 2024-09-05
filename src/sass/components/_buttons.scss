@@ -44,7 +44,7 @@
 
   &[button-type='outline'] {
     background-color: transparent;
-    border: 1px solid clr(primary, 700);
+    border: 1px solid clr(primary, 100);
     color: clr(primary, 100);
 
     &::before {
@@ -55,7 +55,7 @@
   &[button-type='primary'],
   &[button-type='outline'] {
     font-size: fs(300);
-    font-weight: $fw-100;
+    font-weight: $fw-400;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     &::before {
