@@ -1,0 +1,15 @@
+@use '../abstracts/' as *;
+
+.columns {
+  display: grid;
+  gap: var(--grid-gap, $grid-gap);
+
+  @include mq(medium) {
+    grid-auto-flow: column;
+    grid-template-columns: 0.7fr 1fr;
+
+    & > article {
+      align-self: center;
+    }
+  }
+}
