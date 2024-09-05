@@ -1,0 +1,9 @@
+@use '../abstracts/' as *;
+
+.main-title {
+  font-size: fs(900);
+  font-weight: $fw-400;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
