@@ -10,6 +10,7 @@ function AppContext ({ children }) {
   const [step, setStep] = useState(1)
   const [defaultTheme, setDefaultTheme] = useState('soft-purple')
   const [defaultAvatar, setDefaultAvatar] = useState('diagonal-stripes')
+  const [defaultImage, setDefaultImage] = useState('hypnotic')
   const [article, setArticle] = useState({
     id: nanoid(),
     category: '',
@@ -19,19 +20,21 @@ function AppContext ({ children }) {
     readTime: '',
     date: '',
     theme: defaultTheme,
-    avatar: defaultAvatar
+    avatar: defaultAvatar,
+    image: defaultImage
   })
   const [defaultArticle, setDefaultArticle] = useState({
     id: nanoid(),
     category: 'Food & Drink',
-    title: 'The Art and Science of Tea',
+    title: 'The Art & Science of Tea',
     body: `Tea, a timeless beverage, offers a world of flavours, health benefits, and rituals. Discover how tea transforms from leaf to cup in this insightful journey.`,
     author: 'Lucy Whitmore',
     readTime: 4,
     date: getFormatedDate(new Date(2024, 7, 19)),
     dateTime: getFormatedDate(new Date(2024, 7, 19)),
     theme: defaultTheme,
-    avatar: defaultAvatar
+    avatar: defaultAvatar,
+    image: defaultImage
   })
   const [articleList, setArticleList] = useState([])
 
@@ -41,7 +44,7 @@ function AppContext ({ children }) {
 
   function handleSubmission (e) {
     e.preventDefault()
-    const { category, title, body, author, theme, avatar } = article
+    const { category, title, body, author, theme, avatar, image } = article
     if (!category || !title || !body || !author) {
       alert('Please fill in all form fields.')
       return
@@ -59,7 +62,8 @@ function AppContext ({ children }) {
         date: getFormatedDate(new Date()),
         dateTime: getDateTimeString(new Date()),
         theme,
-        avatar
+        avatar,
+        image
       }
     ])
     setArticle({
@@ -71,7 +75,8 @@ function AppContext ({ children }) {
       readTime: '',
       date: '',
       theme: defaultTheme,
-      avatar: defaultAvatar
+      avatar: defaultAvatar,
+      image: defaultImage
     })
     setStep(1)
   }

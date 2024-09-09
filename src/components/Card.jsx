@@ -8,17 +8,13 @@ function Card ({ article }) {
     date,
     dateTime,
     theme,
-    avatar
+    avatar,
+    image
   } = article
   return (
     <article className={`${theme} card-wrapper`}>
       <div className='card flow'>
-        <div className='card__img'>
-          <img
-            src='./images/lidiya-pavlikova-y_gKWLrw3N4-unsplash.jpg'
-            alt='half full jug with tea, fruit and flower blend'
-          />
-        </div>
+        <div className={`card__img bg-${image}`}></div>
         <div className='card__content'>
           <header>
             <div className='card__content__meta'>

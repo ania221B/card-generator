@@ -27,6 +27,15 @@ export const themeList = [
 export const avatarList = [
   'chequered',
   'polka-dot',
-  'checked',
+  'carpet',
   'diagonal-stripes'
+]
+export const imageList = [
+  'repeating-diamonds',
+  'long-bars',
+  'wind-rose',
+  'peppers',
+  'hypnotic',
+  'broken-dots',
+  'spaghetti'
 ]
