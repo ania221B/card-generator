@@ -18,14 +18,14 @@
   display: grid;
   grid-auto-flow: row;
 
-  &__img {
-    border-radius: inherit;
-    img,
-    picture {
-      aspect-ratio: 1 / 1;
-      border-radius: inherit;
-    }
-  }
+  // &__img {
+  //   border-radius: inherit;
+  //   img,
+  //   picture {
+  //     aspect-ratio: 1 / 1;
+  //     border-radius: inherit;
+  //   }
+  // }
 
   &__content * + h2 {
     margin-top: 0.25em;
@@ -80,14 +80,14 @@
     &__img {
       grid-column: 1;
       grid-row: span 2;
-      @include get-nested-theme {
-        background-color: themify(card-img-bg);
-      }
+      // @include get-nested-theme {
+      //   background-color: themify(card-img-bg);
+      // }
 
-      img {
-        aspect-ratio: 1;
-        height: 100%;
-      }
+      // img {
+      //   aspect-ratio: 1;
+      //   height: 100%;
+      // }
     }
 
     &__content {

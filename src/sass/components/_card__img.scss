@@ -1,0 +1,239 @@
+@use '../abstracts/' as *;
+
+.card__img {
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+}
+
+.bg-repeating-diamonds,
+.bg-long-bars,
+.bg-wind-rose,
+.bg-peppers,
+.bg-hypnotic,
+.bg-broken-dots,
+.bg-spaghetti {
+  --bg-size: 64px;
+}
+.bg-repeating-diamonds {
+  @include get-nested-theme() {
+    background: linear-gradient(
+        45deg,
+        #0000 calc(25% / 3),
+        themify(bg-dark) 0 calc(50% / 3),
+        #0000 0 calc(250% / 3),
+        themify(bg-dark) 0 calc(275% / 3),
+        #0000 0
+      ),
+      linear-gradient(
+        45deg,
+        themify(bg-dark) calc(25% / 3),
+        #0000 0 calc(50% / 3),
+        themify(bg-dark) 0 25%,
+        #0000 0 75%,
+        themify(bg-dark) 0 calc(250% / 3),
+        #0000 0 calc(275% / 3),
+        themify(bg-dark) 0
+      ),
+      linear-gradient(
+        -45deg,
+        #0000 calc(25% / 3),
+        themify(bg-dark) 0 calc(50% / 3),
+        #0000 0 calc(250% / 3),
+        themify(bg-dark) 0 calc(275% / 3),
+        #0000 0
+      ),
+      linear-gradient(
+          -45deg,
+          themify(bg-dark) calc(25% / 3),
+          #0000 0 calc(50% / 3),
+          themify(bg-dark) 0 25%,
+          #0000 0 75%,
+          themify(bg-dark) 0 calc(250% / 3),
+          #0000 0 calc(275% / 3),
+          themify(bg-dark) 0
+        )
+        themify(bg-light);
+    background-size: var(--bg-size) var(--bg-size);
+    background-position: 0 0, calc(var(--bg-size) / 2) calc(var(--bg-size) / 2);
+  }
+}
+
+.bg-long-bars {
+  @include get-nested-theme() {
+    background: linear-gradient(
+        135deg,
+        #0000 18.75%,
+        themify(bg-light) 0 31.25%,
+        #0000 0
+      ),
+      repeating-linear-gradient(
+        45deg,
+        themify(bg-light) -6.25% 6.25%,
+        themify(bg-dark) 0 18.75%
+      );
+    background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2);
+  }
+}
+
+.bg-wind-rose {
+  @include get-nested-theme() {
+    background: conic-gradient(
+        from -45deg at calc(100% / 3) calc(100% / 3),
+        themify(bg-light) 90deg,
+        #0000 0
+      ),
+      conic-gradient(
+        from -135deg at calc(100% / 3) calc(2 * 100% / 3),
+        themify(bg-light) 90deg,
+        themify(bg-dark) 0 135deg,
+        #0000 0
+      ),
+      conic-gradient(
+        from 135deg at calc(2 * 100% / 3) calc(2 * 100% / 3),
+        themify(bg-light) 90deg,
+        themify(bg-dark) 0 135deg,
+        #0000 0
+      ),
+      conic-gradient(
+        from 45deg at calc(2 * 100% / 3) calc(100% / 3),
+        themify(bg-light) 90deg,
+        themify(bg-dark) 0 135deg,
+        #0000 0,
+        themify(bg-light) 0 225deg,
+        themify(bg-dark) 0
+      );
+    background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2);
+  }
+}
+
+.bg-peppers {
+  @include get-nested-theme() {
+    background: radial-gradient(
+          calc(1.28 * var(--bg-size) + 24px / 2) at left 50% bottom
+            calc(-0.8 * var(--bg-size)),
+          themify(bg-dark) calc(100% - 24px),
+          themify(bg-light) calc(101% - 24px) 100%,
+          #0000 101%
+        )
+        calc(2 * var(--bg-size)) calc(-1 * calc(1.5 * var(--bg-size) + 24px)),
+      radial-gradient(
+          calc(1.28 * var(--bg-size) + 24px / 2) at left 50% bottom
+            calc(-0.8 * var(--bg-size)),
+          themify(bg-accent) calc(100% - 24px),
+          themify(bg-light) calc(101% - 24px) 100%,
+          #0000 101%
+        )
+        calc(-1 * var(--bg-size)) calc(calc(1.5 * var(--bg-size) + 24px) / -2),
+      radial-gradient(
+          calc(1.28 * var(--bg-size) + 24px / 2) at left 50% top
+            calc(-0.8 * var(--bg-size)),
+          themify(bg-accent) calc(100% - 24px),
+          themify(bg-light) calc(101% - 24px) 100%,
+          #0000 101%
+        )
+        0 calc(1.5 * var(--bg-size) + 24px),
+      radial-gradient(
+          calc(1.28 * var(--bg-size) + 24px / 2) at left 50% top
+            calc(-0.8 * var(--bg-size)),
+          themify(bg-dark) calc(100% - 24px),
+          themify(bg-light) calc(101% - 24px) 100%,
+          #0000 101%
+        )
+        var(--bg-size) calc(calc(1.5 * var(--bg-size) + 24px) / 2),
+      linear-gradient(themify(bg-dark) 50%, themify(bg-accent) 0);
+    background-size: calc(4 * var(--bg-size)) calc(1.5 * var(--bg-size) + 24px);
+  }
+}
+
+.bg-hypnotic {
+  @include get-nested-theme() {
+    background: radial-gradient(
+          100% 100% at 100% 100%,
+          #0000 46%,
+          themify(bg-light) 47% 53%,
+          #0000 54%
+        )
+        var(--bg-size) var(--bg-size),
+      radial-gradient(
+          100% 100% at 0 0,
+          #0000 46%,
+          themify(bg-light) 47% 53%,
+          #0000 54%
+        )
+        var(--bg-size) var(--bg-size),
+      radial-gradient(
+          100% 100%,
+          #0000 22%,
+          themify(bg-light) 23% 29%,
+          #0000 30% 34%,
+          themify(bg-light) 35% 41%,
+          #0000 42%
+        )
+        themify(bg-dark);
+    background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2);
+  }
+}
+
+.bg-broken-dots {
+  @include get-nested-theme() {
+    background: radial-gradient(themify(bg-light) 49%, #0000 50%)
+        calc(var(--bg-size) / -2) calc(var(--bg-size) / 2),
+      repeating-conic-gradient(from 45deg, themify(bg-dark) 0 25%, #0000 0 50%)
+        calc(var(--bg-size) / 2) calc(var(--bg-size) / 2),
+      radial-gradient(themify(bg-light) 49%, #0000 50%),
+      radial-gradient(themify(bg-light) 49%, #0000 50%) var(--bg-size)
+        var(--bg-size) themify(bg-dark);
+    background-size: calc(2 * var(--bg-size)) calc(2 * var(--bg-size));
+  }
+}
+
+.bg-spaghetti {
+  @include get-nested-theme() {
+    background: radial-gradient(
+        at bottom right,
+        themify(bg-dark) 0,
+        themify(bg-dark) 16px,
+        rgba(themify(bg-dark), 0.2) 16px,
+        rgba(themify(bg-dark), 0.2) 32px,
+        rgba(themify(bg-dark), 0.75) 32px,
+        rgba(themify(bg-dark), 0.75) 48px,
+        rgba(themify(bg-dark), 0.25) 48px,
+        rgba(themify(bg-dark), 0.25) 64px,
+        rgba(themify(bg-dark), 0.3) 64px,
+        rgba(themify(bg-dark), 0.3) 80px,
+        rgba(themify(bg-dark), 0.75) 80px,
+        rgba(themify(bg-dark), 0.75) 96px,
+        rgba(themify(bg-dark), 0.2) 96px,
+        rgba(themify(bg-dark), 0.2) 112px,
+        transparent 112px,
+        transparent 128px
+      ),
+      radial-gradient(
+        at top left,
+        transparent 0,
+        transparent 16px,
+        rgba(themify(bg-dark), 0.2) 16px,
+        rgba(themify(bg-dark), 0.2) 32px,
+        rgba(themify(bg-dark), 0.75) 32px,
+        rgba(themify(bg-dark), 0.75) 48px,
+        rgba(themify(bg-dark), 0.3) 48px,
+        rgba(themify(bg-dark), 0.3) 64px,
+        rgba(themify(bg-dark), 0.25) 64px,
+        rgba(themify(bg-dark), 0.25) 80px,
+        rgba(themify(bg-dark), 0.75) 80px,
+        rgba(themify(bg-dark), 0.75) 96px,
+        rgba(themify(bg-dark), 0.2) 96px,
+        rgba(themify(bg-dark), 0.2) 112px,
+        themify(bg-dark) 112px,
+        rgba(themify(bg-dark), 1) 128px,
+        transparent 128px,
+        transparent 320px
+      );
+    background-blend-mode: multiply;
+    background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2),
+      calc(var(--bg-size) * 2) calc(var(--bg-size) * 2);
+    background-color: themify(bg-light);
+  }
+}
