@@ -20,6 +20,7 @@ $card-themes: (
     button-outline: #674188,
     button-hover: #f7efe5,
     bg-light: #e2bfd9,
+    bg-accent: #c8a1e0,
     bg-dark: #674188,
   ),
   soft-blue: (
@@ -30,6 +31,7 @@ $card-themes: (
     button-outline: #3aa6b9,
     button-hover: #fffbf4,
     bg-light: #f9e2af,
+    bg-accent: #fffbf4,
     bg-dark: #3aa6b9,
   ),
   stormy-pink: (
@@ -40,6 +42,7 @@ $card-themes: (
     button-outline: #223052,
     button-hover: #fdf0f0,
     bg-light: rgba(#f1b4bb, 0.5),
+    bg-accent: #223052,
     bg-dark: #1f4172,
   ),
   vintage-pink: (
@@ -50,6 +53,7 @@ $card-themes: (
     button-outline: #0b8494,
     button-hover: #f9f9e0,
     bg-light: #ffd0d0,
+    bg-accent: #aa3c63,
     bg-dark: #0b8494,
   ),
   coffee-time: (
@@ -60,6 +64,7 @@ $card-themes: (
     button-outline: #102c57,
     button-hover: #fefaf6,
     bg-light: #eadbc8,
+    bg-accent: #af8f6f,
     bg-dark: #102c57,
   ),
   summer: (
@@ -70,6 +75,7 @@ $card-themes: (
     button-outline: #cd5c08,
     button-hover: #fff5e4,
     bg-light: #c1d8c3,
+    bg-accent: #2c7865,
     bg-dark: #cd5c08,
   ),
   nature: (
@@ -80,6 +86,7 @@ $card-themes: (
     button-outline: #0a6847,
     button-hover: #d6efd8,
     bg-light: #80af81,
+    bg-accent: #0d7c66,
     bg-dark: #0a6847,
   ),
 );
