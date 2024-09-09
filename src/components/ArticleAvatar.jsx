@@ -1,6 +1,6 @@
 import { useGlobalContext } from '../context'
 import { avatarList } from '../data/data'
-import AvatarItem from './AvatarItem'
+import RadioItem from './RadioItem'
 import { nanoid } from 'nanoid'
 
 function ArticleAvatar () {
@@ -13,11 +13,12 @@ function ArticleAvatar () {
 
         {avatarList.map(item => {
           return (
-            <AvatarItem
-              avatarName={item}
-              article={article}
+            <RadioItem
+              item={article.avatar}
+              itemName={item}
+              itemType='avatar'
               key={nanoid()}
-            ></AvatarItem>
+            ></RadioItem>
           )
         })}
       </fieldset>

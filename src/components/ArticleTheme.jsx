@@ -1,6 +1,6 @@
 import { useGlobalContext } from '../context'
 import { themeList } from '../data/data'
-import ThemeItem from './ThemeItem'
+import RadioItem from './RadioItem'
 import { nanoid } from 'nanoid'
 
 function ArticleTheme () {
@@ -13,11 +13,12 @@ function ArticleTheme () {
 
         {themeList.map(item => {
           return (
-            <ThemeItem
-              themeName={item}
-              article={article}
+            <RadioItem
+              item={article.theme}
+              itemName={item}
+              itemType='theme'
               key={nanoid()}
-            ></ThemeItem>
+            ></RadioItem>
           )
         })}
       </fieldset>
