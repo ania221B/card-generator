@@ -24,7 +24,7 @@ function ArticleContent () {
           name='body'
           value={body}
           onChange={e => handleChange(e)}
-          rows={6}
+          rows={3}
         ></textarea>
       </div>
     </section>
