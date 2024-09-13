@@ -1,10 +1,18 @@
 @use '../abstracts/' as *;
 
 .avatar {
-  width: 3rem;
-  height: 3rem;
+  --size: 3rem;
+  width: var(--size);
+  height: var(--size);
   border-radius: 50%;
   border: 2px solid currentColor;
+
+  .article-form__radio-wrapper & {
+    --size: 2.25rem;
+    justify-self: end;
+    border-color: clr(primary, 100);
+    border-radius: $br-medium;
+  }
 }
 
 .bg-chequered {
