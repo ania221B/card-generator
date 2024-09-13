@@ -1,14 +1,15 @@
 @use '../abstracts/' as *;
 
 .columns {
+  --grid-gap: 4rem;
   display: grid;
-  gap: var(--grid-gap, $grid-gap);
+  gap: 0 var(--grid-gap, $grid-gap);
 
   @include mq(medium) {
     grid-auto-flow: column;
-    grid-template-columns: 0.7fr 1fr;
+    grid-template-columns: minmax(0, 28rem) 1fr;
 
-    & > article {
+    & > * {
       align-self: center;
     }
   }
