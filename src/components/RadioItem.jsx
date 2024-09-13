@@ -1,6 +1,6 @@
 import { useGlobalContext } from '../context'
 
-function RadioItem ({ item, itemName, itemType }) {
+function RadioItem ({ item, itemName, itemType, children }) {
   const { handleChange, makeCapitalizedText, defaultTheme } = useGlobalContext()
   const upperCaseName = makeCapitalizedText(itemName)
   return (
@@ -14,6 +14,7 @@ function RadioItem ({ item, itemName, itemType }) {
         checked={item === itemName}
       />
       <label htmlFor={`${itemName}-avatar`}>{upperCaseName}</label>
+      {children}
     </div>
   )
 }
