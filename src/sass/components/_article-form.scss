@@ -1,23 +1,28 @@
 @use '../abstracts/' as *;
 
 .article-form {
-  min-height: 42rem;
-  padding-inline: $card-padding * 2;
-  padding-block: $card-padding * 3;
-  border-radius: $br-medium;
+  container-type: inline-size;
+  container-name: formContainer;
 
-  background-color: clr(neutral, 900);
+  &__wrapper {
+    min-height: 36rem;
+    padding-inline: $card-padding * 2;
+    padding-block: $card-padding * 3;
+    border-radius: $br-medium;
 
-  display: grid;
-  position: relative;
+    background-color: clr(neutral, 900);
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background-image: linear-gradient(to bottom right, #674188, #c8a1e0);
-    border-radius: inherit;
-    z-index: -1;
+    display: grid;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background-image: linear-gradient(to bottom right, #674188, #c8a1e0);
+      border-radius: inherit;
+      z-index: -1;
+    }
   }
 
   h2 {
@@ -29,6 +34,8 @@
 
   fieldset {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 clamp(3em, 3em + 5cqw, 12em);
     border: none;
     border-radius: inherit;
     position: relative;
@@ -119,10 +126,10 @@
     background-color: none;
     margin: 0;
     color: clr(primary, 100);
-    width: 1.15em;
-    height: 1.15em;
+    width: 1.125em;
+    height: 1.125em;
     border: 0.0625em solid clr(primary, 100);
-    border-radius: 50%;
+    // border-radius: 50%;
 
     display: grid;
     place-content: center;
@@ -130,9 +137,9 @@
 
   input[type='radio']::before {
     content: '';
-    width: 0.65em;
-    height: 0.65em;
-    border-radius: 50%;
+    width: 0.5625em;
+    height: 0.5625em;
+    // border-radius: 50%;
     transform: scale(0);
     transition: 200ms transform ease-in-out;
     box-shadow: inset 1em 1em clr(primary, 100);
@@ -144,8 +151,8 @@
 
   &__radio-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, max-content);
-    grid-gap: 0.75em;
+    grid-template-columns: repeat(2, max-content) 1fr;
+    gap: 0.75em;
     align-items: center;
   }
 
@@ -192,6 +199,15 @@
 
     & > *:last-child {
       justify-self: end;
+    }
+  }
+
+  @container formContainer (max-width: 30em) {
+    &__wrapper {
+      min-height: 53.1rem;
+    }
+    fieldset {
+      grid-template-columns: 1fr;
     }
   }
 }

@@ -16,18 +16,19 @@ function ArticleForm () {
         className='article-form'
         onSubmit={handleSubmission}
       >
-        <ArticleInfo></ArticleInfo>
-
-        <div className='button-wrapper'>
-          <div className='buttons'>
-            <button
-              type='button'
-              onClick={displayNextStep}
-              className='button'
-              button-type='primary'
-            >
-              Next
-            </button>
+        <div className='article-form__wrapper'>
+          <ArticleInfo></ArticleInfo>
+          <div className='button-wrapper'>
+            <div className='buttons'>
+              <button
+                type='button'
+                onClick={displayNextStep}
+                className='button'
+                button-type='primary'
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </form>
@@ -41,26 +42,27 @@ function ArticleForm () {
         className='article-form'
         onSubmit={handleSubmission}
       >
-        <ArticleContent></ArticleContent>
-
-        <div className='button-wrapper'>
-          <div className='buttons'>
-            <button
-              type='button'
-              onClick={displayPrevStep}
-              className='button'
-              button-type='outline'
-            >
-              Back
-            </button>
-            <button
-              type='button'
-              onClick={displayNextStep}
-              className='button'
-              button-type='primary'
-            >
-              Next
-            </button>
+        <div className='article-form__wrapper'>
+          <ArticleContent></ArticleContent>
+          <div className='button-wrapper'>
+            <div className='buttons'>
+              <button
+                type='button'
+                onClick={displayPrevStep}
+                className='button'
+                button-type='outline'
+              >
+                Back
+              </button>
+              <button
+                type='button'
+                onClick={displayNextStep}
+                className='button'
+                button-type='primary'
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </form>
@@ -74,26 +76,27 @@ function ArticleForm () {
         className='article-form'
         onSubmit={handleSubmission}
       >
-        <ArticleTheme></ArticleTheme>
-
-        <div className='button-wrapper'>
-          <div className='buttons'>
-            <button
-              type='button'
-              onClick={displayPrevStep}
-              className='button'
-              button-type='outline'
-            >
-              Back
-            </button>
-            <button
-              type='button'
-              onClick={displayNextStep}
-              className='button'
-              button-type='primary'
-            >
-              Next
-            </button>
+        <div className='article-form__wrapper'>
+          <ArticleTheme></ArticleTheme>
+          <div className='button-wrapper'>
+            <div className='buttons'>
+              <button
+                type='button'
+                onClick={displayPrevStep}
+                className='button'
+                button-type='outline'
+              >
+                Back
+              </button>
+              <button
+                type='button'
+                onClick={displayNextStep}
+                className='button'
+                button-type='primary'
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </form>
@@ -107,26 +110,27 @@ function ArticleForm () {
         className='article-form'
         onSubmit={handleSubmission}
       >
-        <ArticleAvatar></ArticleAvatar>
-
-        <div className='button-wrapper'>
-          <div className='buttons'>
-            <button
-              type='button'
-              onClick={displayPrevStep}
-              className='button'
-              button-type='outline'
-            >
-              Back
-            </button>
-            <button
-              type='button'
-              onClick={displayNextStep}
-              className='button'
-              button-type='primary'
-            >
-              Next
-            </button>
+        <div className='article-form__wrapper'>
+          <ArticleAvatar></ArticleAvatar>
+          <div className='button-wrapper'>
+            <div className='buttons'>
+              <button
+                type='button'
+                onClick={displayPrevStep}
+                className='button'
+                button-type='outline'
+              >
+                Back
+              </button>
+              <button
+                type='button'
+                onClick={displayNextStep}
+                className='button'
+                button-type='primary'
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </form>
@@ -140,21 +144,22 @@ function ArticleForm () {
         className='article-form'
         onSubmit={handleSubmission}
       >
-        <ArticleImage></ArticleImage>
-
-        <div className='button-wrapper'>
-          <div className='buttons'>
-            <button
-              type='button'
-              onClick={displayPrevStep}
-              className='button'
-              button-type='outline'
-            >
-              Back
-            </button>
-            <button className='button' type='submit' button-type='primary'>
-              Generate
-            </button>
+        <div className='article-form__wrapper'>
+          <ArticleImage></ArticleImage>
+          <div className='button-wrapper'>
+            <div className='buttons'>
+              <button
+                type='button'
+                onClick={displayPrevStep}
+                className='button'
+                button-type='outline'
+              >
+                Back
+              </button>
+              <button className='button' type='submit' button-type='primary'>
+                Generate
+              </button>
+            </div>
           </div>
         </div>
       </form>
