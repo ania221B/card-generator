@@ -174,6 +174,8 @@ function AppContext ({ children }) {
         setArticle,
         defaultArticle,
         setDefaultArticle,
+        defaultTheme,
+        setDefaultTheme,
         articleList,
         setArticleList,
         handleChange,
