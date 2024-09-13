@@ -18,7 +18,9 @@ function ArticleAvatar () {
               itemName={item}
               itemType='avatar'
               key={nanoid()}
-            ></RadioItem>
+            >
+              <div className={`avatar bg-${item}`}></div>
+            </RadioItem>
           )
         })}
       </fieldset>
