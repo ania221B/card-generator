@@ -7,7 +7,7 @@
   aspect-ratio: 3 / 2;
 }
 
-.bg-repeating-diamonds,
+.bg-diamonds,
 .bg-long-bars,
 .bg-wind-rose,
 .bg-peppers,
@@ -15,8 +15,13 @@
 .bg-broken-dots,
 .bg-spaghetti {
   --bg-size: 64px;
+
+  .article-form__radio-wrapper & {
+    --bg-size: 10px;
+  }
 }
-.bg-repeating-diamonds {
+
+.bg-diamonds {
   @include get-nested-theme() {
     background: linear-gradient(
         45deg,
@@ -111,39 +116,43 @@
 .bg-peppers {
   @include get-nested-theme() {
     background: radial-gradient(
-          calc(1.28 * var(--bg-size) + 24px / 2) at left 50% bottom
-            calc(-0.8 * var(--bg-size)),
-          themify(bg-dark) calc(100% - 24px),
-          themify(bg-light) calc(101% - 24px) 100%,
+          calc(1.28 * var(--bg-size) + calc(var(--bg-size) * 0.375) / 2) at left
+            50% bottom calc(-0.8 * var(--bg-size)),
+          themify(bg-dark) calc(100% - calc(var(--bg-size) * 0.375)),
+          themify(bg-light) calc(101% - calc(var(--bg-size) * 0.375)) 100%,
           #0000 101%
         )
-        calc(2 * var(--bg-size)) calc(-1 * calc(1.5 * var(--bg-size) + 24px)),
+        calc(2 * var(--bg-size))
+        calc(-1 * calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375))),
       radial-gradient(
-          calc(1.28 * var(--bg-size) + 24px / 2) at left 50% bottom
-            calc(-0.8 * var(--bg-size)),
-          themify(bg-accent) calc(100% - 24px),
-          themify(bg-light) calc(101% - 24px) 100%,
+          calc(1.28 * var(--bg-size) + calc(var(--bg-size) * 0.375) / 2) at left
+            50% bottom calc(-0.8 * var(--bg-size)),
+          themify(bg-accent) calc(100% - calc(var(--bg-size) * 0.375)),
+          themify(bg-light) calc(101% - calc(var(--bg-size) * 0.375)) 100%,
           #0000 101%
         )
-        calc(-1 * var(--bg-size)) calc(calc(1.5 * var(--bg-size) + 24px) / -2),
+        calc(-1 * var(--bg-size))
+        calc(calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375)) / -2),
       radial-gradient(
-          calc(1.28 * var(--bg-size) + 24px / 2) at left 50% top
-            calc(-0.8 * var(--bg-size)),
-          themify(bg-accent) calc(100% - 24px),
-          themify(bg-light) calc(101% - 24px) 100%,
+          calc(1.28 * var(--bg-size) + calc(var(--bg-size) * 0.375) / 2) at left
+            50% top calc(-0.8 * var(--bg-size)),
+          themify(bg-accent) calc(100% - calc(var(--bg-size) * 0.375)),
+          themify(bg-light) calc(101% - calc(var(--bg-size) * 0.375)) 100%,
           #0000 101%
         )
-        0 calc(1.5 * var(--bg-size) + 24px),
+        0 calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375)),
       radial-gradient(
-          calc(1.28 * var(--bg-size) + 24px / 2) at left 50% top
-            calc(-0.8 * var(--bg-size)),
-          themify(bg-dark) calc(100% - 24px),
-          themify(bg-light) calc(101% - 24px) 100%,
+          calc(1.28 * var(--bg-size) + calc(var(--bg-size) * 0.375) / 2) at left
+            50% top calc(-0.8 * var(--bg-size)),
+          themify(bg-dark) calc(100% - calc(var(--bg-size) * 0.375)),
+          themify(bg-light) calc(101% - calc(var(--bg-size) * 0.375)) 100%,
           #0000 101%
         )
-        var(--bg-size) calc(calc(1.5 * var(--bg-size) + 24px) / 2),
+        var(--bg-size)
+        calc(calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375)) / 2),
       linear-gradient(themify(bg-dark) 50%, themify(bg-accent) 0);
-    background-size: calc(4 * var(--bg-size)) calc(1.5 * var(--bg-size) + 24px);
+    background-size: calc(4 * var(--bg-size))
+      calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375));
   }
 }
 
@@ -194,42 +203,42 @@
     background: radial-gradient(
         at bottom right,
         themify(bg-dark) 0,
-        themify(bg-dark) 16px,
-        rgba(themify(bg-dark), 0.2) 16px,
-        rgba(themify(bg-dark), 0.2) 32px,
-        rgba(themify(bg-dark), 0.75) 32px,
-        rgba(themify(bg-dark), 0.75) 48px,
-        rgba(themify(bg-dark), 0.25) 48px,
-        rgba(themify(bg-dark), 0.25) 64px,
-        rgba(themify(bg-dark), 0.3) 64px,
-        rgba(themify(bg-dark), 0.3) 80px,
-        rgba(themify(bg-dark), 0.75) 80px,
-        rgba(themify(bg-dark), 0.75) 96px,
-        rgba(themify(bg-dark), 0.2) 96px,
-        rgba(themify(bg-dark), 0.2) 112px,
-        transparent 112px,
-        transparent 128px
+        themify(bg-dark) calc(var(--bg-size) * 0.25),
+        rgba(themify(bg-dark), 0.2) calc(var(--bg-size) * 0.25),
+        rgba(themify(bg-dark), 0.2) calc(var(--bg-size) * 0.5),
+        rgba(themify(bg-dark), 0.75) calc(var(--bg-size) * 0.5),
+        rgba(themify(bg-dark), 0.75) calc(var(--bg-size) * 0.75),
+        rgba(themify(bg-dark), 0.25) calc(var(--bg-size) * 0.75),
+        rgba(themify(bg-dark), 0.25) calc(var(--bg-size) * 1),
+        rgba(themify(bg-dark), 0.3) calc(var(--bg-size) * 1),
+        rgba(themify(bg-dark), 0.3) calc(var(--bg-size) * 1.25),
+        rgba(themify(bg-dark), 0.75) calc(var(--bg-size) * 1.25),
+        rgba(themify(bg-dark), 0.75) calc(var(--bg-size) * 1.5),
+        rgba(themify(bg-dark), 0.2) calc(var(--bg-size) * 1.5),
+        rgba(themify(bg-dark), 0.2) calc(var(--bg-size) * 1.75),
+        transparent calc(var(--bg-size) * 1.75),
+        transparent calc(var(--bg-size) * 2)
       ),
       radial-gradient(
         at top left,
         transparent 0,
-        transparent 16px,
-        rgba(themify(bg-dark), 0.2) 16px,
-        rgba(themify(bg-dark), 0.2) 32px,
-        rgba(themify(bg-dark), 0.75) 32px,
-        rgba(themify(bg-dark), 0.75) 48px,
-        rgba(themify(bg-dark), 0.3) 48px,
-        rgba(themify(bg-dark), 0.3) 64px,
-        rgba(themify(bg-dark), 0.25) 64px,
-        rgba(themify(bg-dark), 0.25) 80px,
-        rgba(themify(bg-dark), 0.75) 80px,
-        rgba(themify(bg-dark), 0.75) 96px,
-        rgba(themify(bg-dark), 0.2) 96px,
-        rgba(themify(bg-dark), 0.2) 112px,
-        themify(bg-dark) 112px,
-        rgba(themify(bg-dark), 1) 128px,
-        transparent 128px,
-        transparent 320px
+        transparent calc(var(--bg-size) * 0.25),
+        rgba(themify(bg-dark), 0.2) calc(var(--bg-size) * 0.25),
+        rgba(themify(bg-dark), 0.2) calc(var(--bg-size) * 0.5),
+        rgba(themify(bg-dark), 0.75) calc(var(--bg-size) * 0.5),
+        rgba(themify(bg-dark), 0.75) calc(var(--bg-size) * 0.75),
+        rgba(themify(bg-dark), 0.3) calc(var(--bg-size) * 0.75),
+        rgba(themify(bg-dark), 0.3) calc(var(--bg-size) * 1),
+        rgba(themify(bg-dark), 0.25) calc(var(--bg-size) * 1),
+        rgba(themify(bg-dark), 0.25) calc(var(--bg-size) * 1.25),
+        rgba(themify(bg-dark), 0.75) calc(var(--bg-size) * 1.25),
+        rgba(themify(bg-dark), 0.75) calc(var(--bg-size) * 1.5),
+        rgba(themify(bg-dark), 0.2) calc(var(--bg-size) * 1.5),
+        rgba(themify(bg-dark), 0.2) calc(var(--bg-size) * 1.75),
+        themify(bg-dark) calc(var(--bg-size) * 1.75),
+        rgba(themify(bg-dark), 1) calc(var(--bg-size) * 2),
+        transparent calc(var(--bg-size) * 2),
+        transparent calc(var(--bg-size) * 4)
       );
     background-blend-mode: multiply;
     background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2),
