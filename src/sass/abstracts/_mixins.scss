@@ -61,3 +61,17 @@
     }
   }
 }
+
+@mixin apply-background() {
+  @each $color, $theme in $themes {
+    $i: 1;
+    @each $featured-clr, $clr-value in $theme {
+      .bg-#{$color} {
+        span:nth-child(#{$i}) {
+          background-color: $clr-value;
+        }
+      }
+      $i: $i + 1;
+    }
+  }
+}
