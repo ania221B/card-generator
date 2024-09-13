@@ -31,7 +31,7 @@ export const avatarList = [
   'diagonal-stripes'
 ]
 export const imageList = [
-  'repeating-diamonds',
+  'diamonds',
   'long-bars',
   'wind-rose',
   'peppers',
