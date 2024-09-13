@@ -18,7 +18,9 @@ function ArticleImage () {
               itemName={item}
               itemType='image'
               key={nanoid()}
-            ></RadioItem>
+            >
+              <div className={`avatar bg-${item}`}></div>
+            </RadioItem>
           )
         })}
       </fieldset>
