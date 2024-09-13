@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $colors: (
   neutral: (
     050: #ffffff,
@@ -11,82 +13,162 @@ $colors: (
   ),
 );
 
-$card-themes: (
+$themes: (
   soft-purple: (
-    card-text: #f7efe5,
-    card-accent: #674188,
-    card-img-bg: #e2bfd9,
-    card-bg-gradient: linear-gradient(to bottom right, #674188, #c8a1e0),
-    button-outline: #674188,
-    button-hover: #f7efe5,
-    bg-light: #e2bfd9,
-    bg-accent: #c8a1e0,
-    bg-dark: #674188,
+    featured-clr-1: #f7efe5,
+    featured-clr-2: #e2bfd9,
+    featured-clr-3: #c8a1e0,
+    featured-clr-4: #674188,
   ),
   soft-blue: (
-    card-text: #fffbf4,
-    card-accent: #3aa6b9,
-    card-img-bg: #3aa6b9,
-    card-bg-gradient: linear-gradient(to bottom right, #3aa6b9, #f9e2af),
-    button-outline: #3aa6b9,
-    button-hover: #fffbf4,
-    bg-light: #f9e2af,
-    bg-accent: #fffbf4,
-    bg-dark: #3aa6b9,
+    featured-clr-1: #fffbf4,
+    featured-clr-2: #f9e2af,
+    featured-clr-3: #3aa6b9,
+    featured-clr-4: #36b5b0,
   ),
   stormy-pink: (
-    card-text: #fdf0f0,
-    card-accent: #1f4172,
-    card-img-bg: #132043,
-    card-bg-gradient: linear-gradient(to bottom right, #f1b4bb, #1f4172),
-    button-outline: #223052,
-    button-hover: #fdf0f0,
-    bg-light: rgba(#f1b4bb, 0.5),
-    bg-accent: #223052,
-    bg-dark: #1f4172,
+    featured-clr-1: #fdf0f0,
+    featured-clr-2: #f1b4bb,
+    featured-clr-3: #1f4172,
+    featured-clr-4: #223052,
   ),
   vintage-pink: (
-    card-text: #f9f9e0,
-    card-accent: #0b8494,
-    card-img-bg: #aa3c63,
-    card-bg-gradient: linear-gradient(to bottom right, #aa3c63, #ffd0d0),
-    button-outline: #0b8494,
-    button-hover: #f9f9e0,
-    bg-light: #ffd0d0,
-    bg-accent: #aa3c63,
-    bg-dark: #0b8494,
+    featured-clr-1: #f9f9e0,
+    featured-clr-2: #ffd0d0,
+    featured-clr-3: #aa3c63,
+    featured-clr-4: #0b8494,
   ),
   coffee-time: (
-    card-text: #fefaf6,
-    card-accent: #102c57,
-    card-img-bg: #102c57,
-    card-bg-gradient: linear-gradient(to bottom right, #af8f6f, #eadbc8),
-    button-outline: #102c57,
-    button-hover: #fefaf6,
-    bg-light: #eadbc8,
-    bg-accent: #af8f6f,
-    bg-dark: #102c57,
+    featured-clr-1: #fefaf6,
+    featured-clr-2: #eadbc8,
+    featured-clr-3: #af8f6f,
+    featured-clr-4: #102c57,
   ),
   summer: (
-    card-text: #fff5e4,
-    card-accent: #cd5c08,
-    card-img-bg: #cd5c08,
-    card-bg-gradient: linear-gradient(to bottom right, #2c7865, #c1d8c3),
-    button-outline: #cd5c08,
-    button-hover: #fff5e4,
-    bg-light: #c1d8c3,
-    bg-accent: #2c7865,
-    bg-dark: #cd5c08,
+    featured-clr-1: #fff5e4,
+    featured-clr-2: #c1d8c3,
+    featured-clr-3: #2c7865,
+    featured-clr-4: #cd5c08,
   ),
   nature: (
-    card-text: #d6efd8,
-    card-accent: #0a6847,
-    card-img-bg: #0a6847,
-    card-bg-gradient: linear-gradient(to bottom right, #0d7c66, #80af81),
+    featured-clr-1: #d6efd8,
+    featured-clr-2: #80af81,
+    featured-clr-3: #0d7c66,
+    featured-clr-4: #0a6847,
+  ),
+);
+
+$card-themes: (
+  soft-purple: (
+    card-text: map.get($themes, soft-purple, featured-clr-1),
+    card-accent: map.get($themes, soft-purple, featured-clr-4),
+    card-img-bg: map.get($themes, soft-purple, featured-clr-2),
+    card-bg-gradient:
+      linear-gradient(
+        to bottom right,
+        map.get($themes, soft-purple, featured-clr-4),
+        map.get($themes, soft-purple, featured-clr-3)
+      ),
+    button-outline: map.get($themes, soft-purple, featured-clr-4),
+    button-hover: map.get($themes, soft-purple, featured-clr-1),
+    bg-light: map.get($themes, soft-purple, featured-clr-2),
+    bg-accent: map.get($themes, soft-purple, featured-clr-3),
+    bg-dark: map.get($themes, soft-purple, featured-clr-4),
+  ),
+  soft-blue: (
+    card-text: map.get($themes, soft-blue, featured-clr-1),
+    card-accent: map.get($themes, soft-blue, featured-clr-3),
+    card-img-bg: map.get($themes, soft-blue, featured-clr-3),
+    card-bg-gradient:
+      linear-gradient(
+        to bottom right,
+        map.get($themes, soft-blue, featured-clr-3),
+        map.get($themes, soft-blue, featured-clr-2)
+      ),
+    button-outline: map.get($themes, soft-blue, featured-clr-3),
+    button-hover: map.get($themes, soft-blue, featured-clr-1),
+    bg-light: map.get($themes, soft-blue, featured-clr-2),
+    bg-accent: map.get($themes, soft-blue, featured-clr-1),
+    bg-dark: map.get($themes, soft-blue, featured-clr-4),
+  ),
+  stormy-pink: (
+    card-text: map.get($themes, stormy-pink, featured-clr-1),
+    card-accent: map.get($themes, stormy-pink, featured-clr-3),
+    card-img-bg: map.get($themes, stormy-pink, featured-clr-4),
+    card-bg-gradient:
+      linear-gradient(
+        to bottom right,
+        map.get($themes, stormy-pink, featured-clr-2),
+        map.get($themes, stormy-pink, featured-clr-3)
+      ),
+    button-outline: map.get($themes, stormy-pink, featured-clr-4),
+    button-hover: map.get($themes, stormy-pink, featured-clr-1),
+    bg-light: map.get($themes, stormy-pink, featured-clr-2),
+    bg-accent: map.get($themes, stormy-pink, featured-clr-4),
+    bg-dark: map.get($themes, stormy-pink, featured-clr-3),
+  ),
+  vintage-pink: (
+    card-text: map.get($themes, vintage-pink, featured-clr-1),
+    card-accent: map.get($themes, vintage-pink, featured-clr-4),
+    card-img-bg: map.get($themes, vintage-pink, featured-clr-3),
+    card-bg-gradient:
+      linear-gradient(
+        to bottom right,
+        map.get($themes, vintage-pink, featured-clr-3),
+        map.get($themes, vintage-pink, featured-clr-2)
+      ),
+    button-outline: map.get($themes, vintage-pink, featured-clr-4),
+    button-hover: map.get($themes, vintage-pink, featured-clr-1),
+    bg-light: map.get($themes, vintage-pink, featured-clr-2),
+    bg-accent: map.get($themes, vintage-pink, featured-clr-3),
+    bg-dark: map.get($themes, vintage-pink, featured-clr-4),
+  ),
+  coffee-time: (
+    card-text: map.get($themes, coffee-time, featured-clr-1),
+    card-accent: map.get($themes, coffee-time, featured-clr-4),
+    card-img-bg: map.get($themes, coffee-time, featured-clr-4),
+    card-bg-gradient:
+      linear-gradient(
+        to bottom right,
+        map.get($themes, coffee-time, featured-clr-3),
+        map.get($themes, coffee-time, featured-clr-2)
+      ),
+    button-outline: map.get($themes, coffee-time, featured-clr-4),
+    button-hover: map.get($themes, coffee-time, featured-clr-1),
+    bg-light: map.get($themes, coffee-time, featured-clr-2),
+    bg-accent: map.get($themes, coffee-time, featured-clr-3),
+    bg-dark: map.get($themes, coffee-time, featured-clr-4),
+  ),
+  summer: (
+    card-text: map.get($themes, summer, featured-clr-1),
+    card-accent: map.get($themes, summer, featured-clr-4),
+    card-img-bg: map.get($themes, summer, featured-clr-4),
+    card-bg-gradient:
+      linear-gradient(
+        to bottom right,
+        map.get($themes, summer, featured-clr-3),
+        map.get($themes, summer, featured-clr-2)
+      ),
+    button-outline: map.get($themes, summer, featured-clr-4),
+    button-hover: map.get($themes, summer, featured-clr-1),
+    bg-light: map.get($themes, summer, featured-clr-2),
+    bg-accent: map.get($themes, summer, featured-clr-3),
+    bg-dark: map.get($themes, summer, featured-clr-4),
+  ),
+  nature: (
+    card-text: map.get($themes, nature, featured-clr-1),
+    card-accent: map.get($themes, nature, featured-clr-4),
+    card-img-bg: map.get($themes, nature, featured-clr-4),
+    card-bg-gradient:
+      linear-gradient(
+        to bottom right,
+        map.get($themes, nature, featured-clr-3),
+        map.get($themes, nature, featured-clr-2)
+      ),
     button-outline: #0a6847,
-    button-hover: #d6efd8,
-    bg-light: #80af81,
-    bg-accent: #0d7c66,
-    bg-dark: #0a6847,
+    button-hover: map.get($themes, nature, featured-clr-1),
+    bg-light: map.get($themes, nature, featured-clr-2),
+    bg-accent: map.get($themes, nature, featured-clr-3),
+    bg-dark: map.get($themes, nature, featured-clr-4),
   ),
 );
