@@ -18,7 +18,16 @@ function ArticleTheme () {
               itemName={item}
               itemType='theme'
               key={nanoid()}
-            ></RadioItem>
+            >
+              <div className='avatar theme-preview'>
+                <div className={`bg-${item}`}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </RadioItem>
           )
         })}
       </fieldset>
