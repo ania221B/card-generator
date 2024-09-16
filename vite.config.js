@@ -9,12 +9,7 @@ export default defineConfig({
     react(),
     htmlPurge({
       content: ['./src/**/*.jsx', './src/**/*.scss'],
-      safelist: [
-        'bg-chequered',
-        'bg-polka-dot',
-        'bg-checked',
-        'bg-diagonal-stripes'
-      ]
+      safelist: [/^bg-/]
     })
   ]
 })
