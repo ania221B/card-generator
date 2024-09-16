@@ -39,10 +39,18 @@ function AppContext ({ children }) {
   })
   const [articleList, setArticleList] = useState([])
 
+  /**
+   * Updates the article variable with data inputed by user
+   * @param {InputEvent} e The input change event object
+   */
   function handleChange (e) {
     setArticle({ ...article, [e.target.name]: e.target.value })
   }
 
+  /**
+   * Handles submission of form data
+   * @param {SubmitEvent} e Form submit event object
+   */
   function handleSubmission (e) {
     e.preventDefault()
     const { category, title, body, author, theme, avatar, image } = article
@@ -83,36 +91,63 @@ function AppContext ({ children }) {
     setPage(3)
   }
 
+  /**
+   * Displays next page/screen by increasing the value of page variable
+   */
   function displayNextPage () {
     setPage(currentPage => {
       return currentPage + 1
     })
   }
+
+  /**
+   * Displays previous page/screen by decreasing the value of page variable
+   */
   function displayPreviousPage () {
     setPage(currentPage => {
       return currentPage - 1
     })
   }
+
+  /**
+   * Increases the value of step variable
+   */
   function increaseStep () {
     setStep(currentStep => {
       return currentStep + 1
     })
   }
+
+  /**
+   * Decreases the value of step variable
+   */
   function decreaseStep () {
     setStep(currentStep => {
       return currentStep - 1
     })
   }
 
+  /**
+   * Displays next form step by preventing default behaviour and increasing the value of step variable
+   */
   function displayNextStep (e) {
     e.preventDefault()
     increaseStep()
   }
+
+  /**
+   * Displays previous form step by preventing default behaviour and decreasing the value of step variable
+   */
   function displayPrevStep (e) {
     e.preventDefault()
     decreaseStep()
   }
 
+  /**
+   * Shortens article text to first 25 words and applies ellipsis at the end if appropriate
+   * @param {String} text The body/text content of the article
+   * @returns {String} Text content of the article shortened to first 25 words
+   */
   function shortenText (text) {
     const textPortion = text.split(' ').slice(0, 26)
     const lastWord = textPortion[textPortion.length - 1]
@@ -121,6 +156,11 @@ function AppContext ({ children }) {
     return shortText.endsWith('.') ? shortText : shortText + '...'
   }
 
+  /**
+   * Calculates article reading time based on the lenght of the article text content
+   * @param {String} text The body/text content of the article
+   * @returns {Number} Time needed to read the article
+   */
   function calculateReadingTime (text) {
     const avgReadingSpeed = 225
     const wordsToRead = text.split(' ').length
@@ -129,6 +169,11 @@ function AppContext ({ children }) {
     return time
   }
 
+  /**
+   * Formats date, so that it is displayed in the 3-character month name 1 or 2-digit day, 4-digit year format
+   * @param {Date} date Current date
+   * @returns {String} String with formatted date
+   */
   function getFormatedDate (date) {
     const monthsInAYear = [
       'Jan',
@@ -150,6 +195,11 @@ function AppContext ({ children }) {
     return `${month} ${day}, ${year}`
   }
 
+  /**
+   * Converts date to a hyphenated string for the use in `dateTime` parameter
+   * @param {Date} date Current date
+   * @returns {String} Hyphenated string with date
+   */
   function getDateTimeString (date) {
     const year = date.getFullYear()
     const month = date.getMonth().toString().padStart(2, '0')
@@ -157,10 +207,20 @@ function AppContext ({ children }) {
     return `${year}-${month}-${day}`
   }
 
+  /**
+   * Converts text string into all lowercase hyphenated version of the said text string
+   * @param {String} string Text to convert
+   * @returns {String} All lowercase, hyphenated string
+   */
   function makeHyphenatedLowerCase (string) {
     return string.toLowerCase().replace(' ', '-')
   }
 
+  /**
+   * Creates a capitalized version of standard text with spaces or a hyphenated text
+   * @param {String} string Text to capitalize
+   * @returns {String} Capitalized text string
+   */
   function makeCapitalizedText (string) {
     const capitalized = []
     if (string.includes(' ')) {
