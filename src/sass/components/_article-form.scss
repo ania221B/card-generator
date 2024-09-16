@@ -5,7 +5,7 @@
   container-name: formContainer;
 
   &__wrapper {
-    min-height: 36rem;
+    min-height: $main-content-min-height-desktop;
     padding-inline: $card-padding * 2;
     padding-block: $card-padding * 3;
     border-radius: $br-medium;
@@ -168,7 +168,7 @@
 
   @container formContainer (max-width: 30em) {
     &__wrapper {
-      min-height: 53.1rem;
+      min-height: $main-content-min-height-mobile;
     }
     fieldset {
       grid-template-columns: 1fr;
