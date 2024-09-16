@@ -8,14 +8,10 @@ function ArticleList () {
   if (articleList.length === 0) {
     return (
       <header
-        className='container'
+        className='container min-height centered-content'
         data-container='small'
         style={{
-          minHeight: '36rem',
-          display: 'grid',
-          placeItems: 'center',
-          maxWidth: '55ch',
-          marginBlock: 'auto'
+          maxWidth: '55ch'
         }}
       >
         <h2>
@@ -26,13 +22,7 @@ function ArticleList () {
     )
   }
   return (
-    <ul
-      className='grid-auto-fit'
-      role='list'
-      style={{
-        minHeight: '36rem'
-      }}
-    >
+    <ul className='grid-auto-fit min-height' role='list'>
       {articleList.map(articleItem => {
         return (
           <li key={nanoid()}>
