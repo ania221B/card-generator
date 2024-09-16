@@ -23,7 +23,7 @@ function ArticleForm () {
               <button
                 type='button'
                 onClick={displayNextStep}
-                className='button'
+                className='button next-button'
                 button-type='primary'
               >
                 Next
@@ -49,7 +49,7 @@ function ArticleForm () {
               <button
                 type='button'
                 onClick={displayPrevStep}
-                className='button'
+                className='button back-button'
                 button-type='outline'
               >
                 Back
@@ -57,7 +57,7 @@ function ArticleForm () {
               <button
                 type='button'
                 onClick={displayNextStep}
-                className='button'
+                className='button next-button'
                 button-type='primary'
               >
                 Next
@@ -83,7 +83,7 @@ function ArticleForm () {
               <button
                 type='button'
                 onClick={displayPrevStep}
-                className='button'
+                className='button back-button'
                 button-type='outline'
               >
                 Back
@@ -91,7 +91,7 @@ function ArticleForm () {
               <button
                 type='button'
                 onClick={displayNextStep}
-                className='button'
+                className='button next-button'
                 button-type='primary'
               >
                 Next
@@ -117,7 +117,7 @@ function ArticleForm () {
               <button
                 type='button'
                 onClick={displayPrevStep}
-                className='button'
+                className='button back-button'
                 button-type='outline'
               >
                 Back
@@ -125,7 +125,7 @@ function ArticleForm () {
               <button
                 type='button'
                 onClick={displayNextStep}
-                className='button'
+                className='button next-button'
                 button-type='primary'
               >
                 Next
@@ -151,7 +151,7 @@ function ArticleForm () {
               <button
                 type='button'
                 onClick={displayPrevStep}
-                className='button'
+                className='button back-button'
                 button-type='outline'
               >
                 Back
