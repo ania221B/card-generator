@@ -6,8 +6,8 @@
 }
 .card {
   --flow-spacer: 1.25em;
-  min-width: 19rem;
-  max-width: 50rem;
+  min-width: $card-min-width;
+  max-width: $card-max-width;
   @include get-nested-theme {
     color: themify(card-text);
     background-image: themify(card-bg-gradient);
