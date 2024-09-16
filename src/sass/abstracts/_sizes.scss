@@ -19,7 +19,7 @@ $card-base-width: 25rem;
 $grid-gap: 1.5rem;
 $flex-group-gap: 1rem;
 
-$container-padding-inline: 1rem;
+$container-padding-inline: clamp(1.5rem, 1.5rem + 1vw, 3rem);
 $container-max-width: 72rem;
 $container-max-width-small: 50rem;
 $container-max-width-large: 82rem;
