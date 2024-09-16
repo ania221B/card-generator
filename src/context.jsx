@@ -7,6 +7,7 @@ export function useGlobalContext () {
 }
 
 function AppContext ({ children }) {
+  const [page, setPage] = useState(1)
   const [step, setStep] = useState(1)
   const [defaultTheme, setDefaultTheme] = useState('soft-purple')
   const [defaultAvatar, setDefaultAvatar] = useState('diagonal-stripes')
@@ -79,8 +80,19 @@ function AppContext ({ children }) {
       image: defaultImage
     })
     setStep(1)
+    setPage(3)
   }
 
+  function displayNextPage () {
+    setPage(currentPage => {
+      return currentPage + 1
+    })
+  }
+  function displayPreviousPage () {
+    setPage(currentPage => {
+      return currentPage - 1
+    })
+  }
   function increaseStep () {
     setStep(currentStep => {
       return currentStep + 1
@@ -168,6 +180,8 @@ function AppContext ({ children }) {
   return (
     <GlobalContext.Provider
       value={{
+        page,
+        setPage,
         step,
         setStep,
         article,
@@ -180,7 +194,8 @@ function AppContext ({ children }) {
         setArticleList,
         handleChange,
         handleSubmission,
-
+        displayNextPage,
+        displayPreviousPage,
         displayNextStep,
         displayPrevStep,
         getFormatedDate,
