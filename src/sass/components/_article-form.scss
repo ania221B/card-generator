@@ -166,42 +166,6 @@
     background-color: inherit;
   }
 
-  .button-wrapper {
-    align-self: end;
-    padding-block-start: 3em;
-    container-type: inline-size;
-    container-name: buttonContainer;
-
-    @container buttonContainer (max-width: 20em) {
-      .buttons {
-        grid-auto-flow: row;
-        gap: 1.5em;
-
-        & > *:first-child {
-          justify-self: stretch;
-        }
-
-        & > *:last-child {
-          justify-self: stretch;
-        }
-      }
-    }
-  }
-
-  .buttons {
-    display: grid;
-
-    grid-auto-flow: column;
-
-    & > *:first-child {
-      justify-self: start;
-    }
-
-    & > *:last-child {
-      justify-self: end;
-    }
-  }
-
   @container formContainer (max-width: 30em) {
     &__wrapper {
       min-height: 53.1rem;
