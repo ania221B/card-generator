@@ -1,0 +1,12 @@
+@use '../abstracts/' as *;
+
+.grid-row {
+  --grid-gap: 3rem;
+  display: grid;
+  grid-auto-flow: row;
+  gap: var(--grid-gap, $grid-gap);
+
+  & > *:last-child {
+    align-self: end;
+  }
+}
