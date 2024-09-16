@@ -1,0 +1,8 @@
+@use '../abstracts/' as *;
+
+.min-height {
+  min-height: $main-content-min-height-desktop;
+  @media (max-width: 30em) {
+    min-height: $main-content-min-height-mobile;
+  }
+}
