@@ -14,7 +14,9 @@ $padding-hero: clamp(15rem, 15vh, 20rem);
 $padding-section: clamp(3rem, 5vh, 5rem);
 
 $card-padding: 1.25em;
+$card-min-width: 19rem;
 $card-base-width: 25rem;
+$card-max-width: 50rem;
 
 $grid-gap: 1.5rem;
 $flex-group-gap: 1rem;
@@ -29,3 +31,6 @@ $bg-min-height: 20rem;
 $bg-max-height: 35rem;
 
 $br-medium: 0.25em;
+
+$main-content-min-height-desktop: 36rem;
+$main-content-min-height-mobile: 53.1rem;
