@@ -8,4 +8,10 @@
     minmax(min($card-base-width, 100%), 1fr)
   );
   align-items: center;
+
+  & > *:only-child {
+    width: 100%;
+    max-width: $card-max-width;
+    justify-self: center;
+  }
 }
