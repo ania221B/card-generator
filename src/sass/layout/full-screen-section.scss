@@ -1,0 +1,30 @@
+@use '../abstracts/' as *;
+
+.section--full-screen {
+  position: absolute;
+  inset: 0;
+  width: 100dvw;
+  min-height: 100dvh;
+  display: grid;
+  align-items: center;
+  z-index: 1;
+
+  .container > * {
+    opacity: 0;
+    transform: translateY(3.5rem);
+    transition: opacity 1200ms ease-in-out 100ms,
+      transform 900ms ease-in-out 50ms;
+  }
+}
+
+.hidden {
+  opacity: 0;
+  z-index: -1;
+}
+
+.reveal {
+  .container > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
