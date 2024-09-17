@@ -113,10 +113,7 @@ function AppContext ({ children }) {
     const isFormValid = Object.keys(existingErrors).length === 0
 
     if (isFormValid) {
-      alert('Success!')
-
-      setStep(1)
-      setPage(3)
+      // alert('Success!')
 
       setArticleList([
         ...articleList,
@@ -146,6 +143,11 @@ function AppContext ({ children }) {
         avatar: defaultAvatar,
         image: defaultImage
       })
+
+      setTimeout(() => {
+        setStep(1)
+        setPage(3)
+      }, 300)
       setFormErrors({})
     } else {
       alert('Please fill in all form fields.')
