@@ -45,6 +45,11 @@ function AppContext ({ children }) {
     authorError: ''
   })
 
+  /**
+   * Chceks if there are any fields with no value
+   * @param {Object} article An object with data inputted by user
+   * @returns {Array} Error messages for any missing fields
+   */
   function validateForm (article) {
     const { category, title, body, author } = article
     const errors = {}
