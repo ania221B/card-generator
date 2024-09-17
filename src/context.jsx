@@ -38,13 +38,64 @@ function AppContext ({ children }) {
     image: defaultImage
   })
   const [articleList, setArticleList] = useState([])
+  const [formErrors, setFormErrors] = useState({
+    categoryError: '',
+    titleError: '',
+    bodyError: '',
+    authorError: ''
+  })
+
+  function validateForm (article) {
+    const { category, title, body, author } = article
+    const errors = {}
+    if (!category.trim()) {
+      errors.categoryError = 'Please select category from the list'
+    }
+
+    if (!title.trim()) {
+      errors.titleError = 'Please provide a title of your article'
+    }
+
+    if (!body.trim()) {
+      errors.bodyError = 'Please provide a text content of your article'
+    }
+
+    if (!author.trim()) {
+      errors.authorError = `Please provide article author's name`
+    }
+    return errors
+  }
 
   /**
-   * Updates the article variable with data inputed by user
+   * Updates the article variable with data inputed by user, validates the data and updates error state
    * @param {InputEvent} e The input change event object
    */
   function handleChange (e) {
-    setArticle({ ...article, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+
+    setArticle({ ...article, [name]: value })
+
+    const existingErrors = { ...formErrors }
+    const updatedArticle = { ...article, [name]: value }
+    const fieldsWithErrors = validateForm(updatedArticle)
+
+    if (name === 'category') {
+      existingErrors.categoryError = fieldsWithErrors.categoryError || ''
+    }
+    if (name === 'title') {
+      existingErrors.titleError = fieldsWithErrors.titleError || ''
+    }
+    if (name === 'body') {
+      existingErrors.bodyError = fieldsWithErrors.bodyError || ''
+    }
+    if (name === 'author') {
+      existingErrors.authorError = fieldsWithErrors.authorError || ''
+    }
+
+    setFormErrors(prevErrors => ({
+      ...prevErrors,
+      [`${name}Error`]: ''
+    }))
   }
 
   /**
@@ -53,42 +104,52 @@ function AppContext ({ children }) {
    */
   function handleSubmission (e) {
     e.preventDefault()
-    const { category, title, body, author, theme, avatar, image } = article
-    if (!category || !title || !body || !author) {
-      alert('Please fill in all form fields.')
-      return
-    }
+    const existingErrors = validateForm(article)
 
-    setArticleList([
-      ...articleList,
-      {
+    const { category, title, body, author, theme, avatar, image } = article
+
+    setFormErrors(existingErrors)
+
+    const isFormValid = Object.keys(existingErrors).length === 0
+
+    if (isFormValid) {
+      alert('Success!')
+
+      setStep(1)
+      setPage(3)
+
+      setArticleList([
+        ...articleList,
+        {
+          id: nanoid(),
+          category: makeCapitalizedText(category),
+          title: makeCapitalizedText(title),
+          body: shortenText(body),
+          author: makeCapitalizedText(author),
+          readTime: calculateReadingTime(body),
+          date: getFormatedDate(new Date()),
+          dateTime: getDateTimeString(new Date()),
+          theme,
+          avatar,
+          image
+        }
+      ])
+      setArticle({
         id: nanoid(),
-        category: makeCapitalizedText(category),
-        title: makeCapitalizedText(title),
-        body: shortenText(body),
-        author: makeCapitalizedText(author),
-        readTime: calculateReadingTime(body),
-        date: getFormatedDate(new Date()),
-        dateTime: getDateTimeString(new Date()),
-        theme,
-        avatar,
-        image
-      }
-    ])
-    setArticle({
-      id: nanoid(),
-      category: '',
-      title: '',
-      body: '',
-      author: '',
-      readTime: '',
-      date: '',
-      theme: defaultTheme,
-      avatar: defaultAvatar,
-      image: defaultImage
-    })
-    setStep(1)
-    setPage(3)
+        category: '',
+        title: '',
+        body: '',
+        author: '',
+        readTime: '',
+        date: '',
+        theme: defaultTheme,
+        avatar: defaultAvatar,
+        image: defaultImage
+      })
+      setFormErrors({})
+    } else {
+      alert('Please fill in all form fields.')
+    }
   }
 
   /**
@@ -252,6 +313,8 @@ function AppContext ({ children }) {
         setDefaultTheme,
         articleList,
         setArticleList,
+        formErrors,
+        setFormErrors,
         handleChange,
         handleSubmission,
         displayNextPage,

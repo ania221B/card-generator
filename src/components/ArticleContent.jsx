@@ -1,7 +1,7 @@
 import { useGlobalContext } from '../context'
 
 function ArticleContent () {
-  const { step, article, handleChange } = useGlobalContext()
+  const { step, article, handleChange, formErrors } = useGlobalContext()
   const { title, body } = article
   return (
     <section>
@@ -15,6 +15,9 @@ function ArticleContent () {
           value={title}
           onChange={e => handleChange(e)}
         />
+        {formErrors.titleError && (
+          <p className='error'>{formErrors.titleError}</p>
+        )}
       </div>
       <div className='article-form__control-wrapper'>
         <label htmlFor='article-body'>Text:</label>
@@ -26,6 +29,9 @@ function ArticleContent () {
           onChange={e => handleChange(e)}
           rows={3}
         ></textarea>
+        {formErrors.bodyError && (
+          <p className='error'>{formErrors.bodyError}</p>
+        )}
       </div>
     </section>
   )
