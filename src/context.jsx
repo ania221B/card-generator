@@ -126,7 +126,7 @@ function AppContext ({ children }) {
           title: makeCapitalizedText(title),
           body: shortenText(body),
           author: makeCapitalizedText(author),
-          readTime: calculateReadingTime(body),
+          readTime: body ? calculateReadingTime(body) : 0,
           date: getFormatedDate(new Date()),
           dateTime: getDateTimeString(new Date()),
           theme,
