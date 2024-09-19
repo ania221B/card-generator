@@ -2,6 +2,7 @@ import { useGlobalContext } from '../context'
 import { categoryList } from '../data/data'
 import CategoryOption from './CategoryOption'
 import { nanoid } from 'nanoid'
+import FormError from './FormError'
 
 function ArticleInfo () {
   const { step, article, handleChange, formErrors } = useGlobalContext()
@@ -28,7 +29,7 @@ function ArticleInfo () {
           })}
         </select>
         {formErrors.categoryError && (
-          <p className='error'>{formErrors.categoryError}</p>
+          <FormError error={formErrors.categoryError}></FormError>
         )}
       </div>
 
@@ -42,7 +43,7 @@ function ArticleInfo () {
           onChange={e => handleChange(e)}
         />
         {formErrors.authorError && (
-          <p className='error'>{formErrors.authorError}</p>
+          <FormError error={formErrors.authorError}></FormError>
         )}
       </div>
     </section>
