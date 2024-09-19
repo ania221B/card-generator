@@ -20,8 +20,6 @@ function ArticleInfo () {
           value={category}
           onChange={e => handleChange(e)}
         >
-          <option value=''>--Pick one option--</option>
-
           {categoryList.map(item => {
             return (
               <CategoryOption optionName={item} key={nanoid()}></CategoryOption>

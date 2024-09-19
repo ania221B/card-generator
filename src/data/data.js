@@ -1,4 +1,5 @@
 export const categoryList = [
+  'pick one option',
   'business',
   'education',
   'entertainment',
