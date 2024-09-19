@@ -52,10 +52,13 @@
     &::after,
     &::before {
       content: '';
-      position: absolute;
-      inset: auto 0 0 0;
+      // position: absolute;
+      // inset: auto 0 0 0;
       height: 1px;
       width: 100%;
+      grid-column: 1;
+      grid-row: 3;
+      align-self: start;
     }
 
     &::after {
@@ -129,7 +132,6 @@
     width: 1.125em;
     height: 1.125em;
     border: 0.0625em solid clr(primary, 100);
-    // border-radius: 50%;
 
     display: grid;
     place-content: center;
@@ -139,7 +141,6 @@
     content: '';
     width: 0.5625em;
     height: 0.5625em;
-    // border-radius: 50%;
     transform: scale(0);
     transition: 200ms transform ease-in-out;
     box-shadow: inset 1em 1em clr(primary, 100);
@@ -164,6 +165,16 @@
     appearance: none;
     color: clr(primary, 100);
     background-color: inherit;
+  }
+
+  .error {
+    display: flex;
+    gap: 0.75em;
+    align-items: center;
+    font-size: fs(300);
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+    color: $error-color;
   }
 
   @container formContainer (max-width: 30em) {
