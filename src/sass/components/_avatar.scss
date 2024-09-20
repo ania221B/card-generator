@@ -10,7 +10,9 @@
   .article-form__radio-wrapper & {
     --size: 2.25rem;
     justify-self: end;
-    border-color: clr(primary, 100);
+    @include get-nested-theme() {
+      border-color: themify(form-accent-clr);
+    }
     border-radius: $br-medium;
   }
 }

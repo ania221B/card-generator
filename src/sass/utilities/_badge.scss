@@ -7,7 +7,7 @@
   padding-inline: 1.125em;
   @include get-nested-theme {
     background-color: themify(card-accent);
-    color: themify(card-text);
+    color: themify(text-clr);
   }
   border-radius: $br-medium;
   min-width: fit-content;

@@ -10,8 +10,9 @@
     padding-block: $card-padding * 3;
     border-radius: $br-medium;
 
-    background-color: clr(neutral, 900);
-
+    @include get-nested-theme() {
+      background-image: themify(form-bg-gradient);
+    }
     display: grid;
     position: relative;
 
@@ -19,7 +20,9 @@
       content: '';
       position: absolute;
       inset: -1px;
-      background-image: linear-gradient(to bottom right, #674188, #c8a1e0);
+      @include get-nested-theme() {
+        background-image: themify(card-bg-gradient);
+      }
       border-radius: inherit;
       z-index: -1;
     }
@@ -52,8 +55,6 @@
     &::after,
     &::before {
       content: '';
-      // position: absolute;
-      // inset: auto 0 0 0;
       height: 1px;
       width: 100%;
       grid-column: 1;
@@ -62,16 +63,16 @@
     }
 
     &::after {
-      background-color: rgba(clr(neutral, 100), 0.5);
+      @include get-nested-theme() {
+        background-color: rgba(themify(text-clr), 0.5);
+      }
       transition: opacity 600ms ease-out;
     }
 
     &::before {
-      background-image: linear-gradient(
-        to left,
-        clr(primary, 700),
-        clr(primary, 100)
-      );
+      @include get-nested-theme() {
+        background-image: themify(form-hover-gradient);
+      }
       transform: scaleX(0);
       transition: transform 400ms ease-out;
     }
@@ -95,7 +96,9 @@
   legend {
     font-size: fs(300);
     font-weight: $fw-400;
-    color: clr(primary, 100);
+    @include get-nested-theme() {
+      color: themify(form-accent-clr);
+    }
     text-transform: uppercase;
   }
 
@@ -115,7 +118,9 @@
 
   input,
   textarea {
-    color: clr(neutral, 100);
+    @include get-nested-theme() {
+      color: themify(text-clr);
+    }
   }
 
   input:focus-visible,
@@ -128,10 +133,14 @@
     appearance: none;
     background-color: none;
     margin: 0;
-    color: clr(primary, 100);
+    @include get-nested-theme() {
+      color: themify(form-accent-clr);
+    }
     width: 1.125em;
     height: 1.125em;
-    border: 0.0625em solid clr(primary, 100);
+    @include get-nested-theme() {
+      border: 0.0625em solid themify(form-accent-clr);
+    }
 
     display: grid;
     place-content: center;
@@ -143,7 +152,9 @@
     height: 0.5625em;
     transform: scale(0);
     transition: 200ms transform ease-in-out;
-    box-shadow: inset 1em 1em clr(primary, 100);
+    @include get-nested-theme() {
+      box-shadow: inset 1em 1em themify(form-accent-clr);
+    }
   }
 
   input[type='radio']:checked::before {
@@ -163,7 +174,9 @@
 
   select {
     appearance: none;
-    color: clr(primary, 100);
+    @include get-nested-theme() {
+      color: themify(form-accent-clr);
+    }
     background-color: inherit;
   }
 

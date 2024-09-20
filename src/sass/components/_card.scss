@@ -9,7 +9,7 @@
   min-width: $card-min-width;
   max-width: $card-max-width;
   @include get-nested-theme {
-    color: themify(card-text);
+    color: themify(text-clr);
     background-image: themify(card-bg-gradient);
   }
   padding-inline: $card-padding;

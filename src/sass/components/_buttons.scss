@@ -74,20 +74,43 @@
   }
 
   &[button-type='primary'] {
-    background-color: clr(primary, 700);
-    color: clr(neutral, 100);
+    @include get-nested-theme() {
+      background-color: themify(button-bg);
+      color: themify(button-text);
+    }
     &::before {
       inset: 0;
+      @include get-nested-theme() {
+        background-color: themify(button-hover-bg);
+      }
+    }
+    &:hover,
+    &:focus {
+      @include get-nested-theme() {
+        color: themify(button-hover-text);
+      }
     }
   }
 
   &[button-type='outline'] {
     background-color: transparent;
-    border: 1px solid clr(primary, 100);
-    color: clr(primary, 100);
+    @include get-nested-theme() {
+      border: 1px solid themify(button-outline);
+      color: themify(button-outline);
+    }
 
     &::before {
       inset: -1px;
+      @include get-nested-theme() {
+        background-color: themify(button-outline);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      @include get-nested-theme() {
+        color: themify(button-hover-text);
+      }
     }
   }
 
@@ -97,14 +120,6 @@
     font-weight: $fw-400;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    &::before {
-      background-color: clr(primary, 100);
-    }
-
-    &:hover,
-    &:focus {
-      color: clr(neutral, 800);
-    }
   }
 }
 
@@ -114,9 +129,9 @@
   text-transform: capitalize;
 
   @include get-nested-theme {
-    border: 2px solid themify(button-outline);
+    border: 2px solid themify(card-button-outline);
     background-color: transparent;
-    color: themify(button-outline);
+    color: themify(card-button-outline);
   }
 
   grid-template-columns: max-content 0.5em 1.5em;
@@ -132,14 +147,14 @@
     width: calc(100% + 2px);
     height: calc(100% + 2px);
     @include get-nested-theme {
-      background-color: themify(button-outline);
+      background-color: themify(card-button-outline);
     }
   }
 
   &:hover {
     grid-template-columns: max-content 1.25em 1.5em;
     @include get-nested-theme {
-      color: themify(button-hover);
+      color: themify(card-button-hover-text);
     }
   }
 }
