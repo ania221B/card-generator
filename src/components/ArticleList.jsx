@@ -22,15 +22,17 @@ function ArticleList () {
     )
   }
   return (
-    <ul className='grid-auto-fit min-height' role='list'>
-      {articleList.map(articleItem => {
-        return (
-          <li key={nanoid()}>
-            <Card article={articleItem}></Card>
-          </li>
-        )
-      })}
-    </ul>
+    <div className='article-list-wrapper'>
+      <ul className='article-list grid-auto-fit' role='list'>
+        {articleList.map(articleItem => {
+          return (
+            <li key={nanoid()}>
+              <Card article={articleItem}></Card>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
   )
 }
 export default ArticleList
