@@ -5,8 +5,8 @@
 @use 'mixins' as *;
 
 @function clr($color, $shade) {
-  @if map.has-key($colors, $color, $shade) {
-    @return map.get($colors, $color, $shade);
+  @if map.has-key($themes, $color, $shade) {
+    @return map.get($themes, $color, $shade);
   } @else {
     @error '$colors does not have that color!';
   }
