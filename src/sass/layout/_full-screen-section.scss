@@ -7,13 +7,18 @@
   height: 100%;
   display: grid;
   align-items: center;
-  z-index: 1;
+  z-index: 0;
 
   .container > * {
     opacity: 0;
     transform: translateY(3.5rem);
-    transition: opacity 1200ms ease-in-out 100ms,
-      transform 900ms ease-in-out 50ms;
+    transition: opacity 1000ms ease-in-out 200ms,
+      transform 700ms ease-in-out 100ms;
+  }
+
+  .container > *:last-child {
+    transition: opacity 1200ms ease-in-out 500ms,
+      transform 900ms ease-in-out 350ms;
   }
 }
 
