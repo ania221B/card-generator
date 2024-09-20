@@ -1,0 +1,43 @@
+@use '../abstracts/' as *;
+
+dialog:modal {
+  max-width: 30rem;
+  padding: 1.5em * 1.5;
+
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  @include get-nested-theme() {
+    background-image: themify(form-bg-gradient);
+    color: themify(form-accent-clr);
+    border: 1px solid themify(form-accent-clr);
+  }
+  border-radius: $br-medium;
+
+  display: grid;
+  grid-auto-flow: rows;
+  gap: $grid-gap * 1.5;
+
+  .error {
+    display: grid;
+    grid-auto-flow: rows;
+    gap: $grid-gap * 1.5;
+    @include get-nested-theme() {
+      color: themify(form-accent-clr);
+    }
+
+    svg {
+      justify-self: center;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}
+
+dialog::backdrop {
+  @include get-nested-theme() {
+    background-color: rgba(themify(bg-main), 0.95);
+  }
+
+  opacity: 0.9;
+}
