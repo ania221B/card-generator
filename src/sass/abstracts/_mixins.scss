@@ -66,9 +66,11 @@
   @each $color, $theme in $themes {
     $i: 1;
     @each $featured-clr, $clr-value in $theme {
-      .bg-#{$color} {
-        span:nth-child(#{$i}) {
-          background-color: $clr-value;
+      @if $i <= 4 {
+        .bg-#{$color} {
+          span:nth-child(#{$i}) {
+            background-color: $clr-value;
+          }
         }
       }
       $i: $i + 1;
