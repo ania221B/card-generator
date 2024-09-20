@@ -1,11 +1,29 @@
+import { useEffect } from 'react'
 import ArticleForm from './components/ArticleForm'
 import ArticleList from './components/ArticleList'
 import Card from './components/Card'
+import FormDialog from './components/FormDialog'
 import { useGlobalContext } from './context'
 
 function App () {
-  const { page, defaultArticle, displayNextPage, displayPreviousPage } =
-    useGlobalContext()
+  const {
+    page,
+    defaultArticle,
+    displayNextPage,
+    displayPreviousPage,
+    isModalOpen,
+    modalRef,
+    defaultTheme,
+    applyTheme
+  } = useGlobalContext()
+
+  useEffect(() => {
+    isModalOpen ? modalRef.current.showModal() : modalRef.current.close()
+  }, [isModalOpen])
+
+  useEffect(() => {
+    applyTheme()
+  }, [defaultTheme])
   return (
     <main>
       <section
@@ -125,6 +143,8 @@ function App () {
           </div>
         </div>
       </div>
+
+      <FormDialog></FormDialog>
     </main>
   )
 }

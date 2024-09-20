@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useRef, useState } from 'react'
 
 const GlobalContext = createContext()
 export function useGlobalContext () {
@@ -44,6 +44,8 @@ function AppContext ({ children }) {
     bodyError: '',
     authorError: ''
   })
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const modalRef = useRef(null)
 
   /**
    * Chceks if there are any fields with no value
@@ -118,8 +120,6 @@ function AppContext ({ children }) {
     const isFormValid = Object.keys(existingErrors).length === 0
 
     if (isFormValid) {
-      // alert('Success!')
-
       setArticleList([
         ...articleList,
         {
@@ -155,7 +155,7 @@ function AppContext ({ children }) {
       }, 300)
       setFormErrors({})
     } else {
-      alert('Please fill in all form fields.')
+      setIsModalOpen(true)
     }
   }
 
@@ -305,6 +305,13 @@ function AppContext ({ children }) {
     return capitalized.join(' ')
   }
 
+  /**
+   * Applies color theme to body
+   */
+  function applyTheme () {
+    document.body.classList.add(`${defaultTheme}`)
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -322,6 +329,9 @@ function AppContext ({ children }) {
         setArticleList,
         formErrors,
         setFormErrors,
+        isModalOpen,
+        setIsModalOpen,
+        modalRef,
         handleChange,
         handleSubmission,
         displayNextPage,
@@ -330,7 +340,8 @@ function AppContext ({ children }) {
         displayPrevStep,
         getFormatedDate,
         makeHyphenatedLowerCase,
-        makeCapitalizedText
+        makeCapitalizedText,
+        applyTheme
       }}
     >
       {children}
