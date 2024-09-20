@@ -306,6 +306,18 @@ function AppContext ({ children }) {
   }
 
   /**
+   * Closes the modal when user clicks outside of it
+   * @param {MouseEvent} e Click event occurring outside the modal
+   */
+  function handleClickOutside (e) {
+    const modalContent = modalRef.current.querySelector('.dialog__content')
+
+    if (modalRef.current && !modalContent.contains(e.target)) {
+      setIsModalOpen(false)
+    }
+  }
+
+  /**
    * Applies color theme to body
    */
   function applyTheme () {
@@ -341,6 +353,7 @@ function AppContext ({ children }) {
         getFormatedDate,
         makeHyphenatedLowerCase,
         makeCapitalizedText,
+        handleClickOutside,
         applyTheme
       }}
     >

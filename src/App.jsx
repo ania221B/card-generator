@@ -13,12 +13,23 @@ function App () {
     displayPreviousPage,
     isModalOpen,
     modalRef,
+    handleClickOutside,
     defaultTheme,
     applyTheme
   } = useGlobalContext()
 
   useEffect(() => {
     isModalOpen ? modalRef.current.showModal() : modalRef.current.close()
+  }, [isModalOpen])
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('click', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
   }, [isModalOpen])
 
   useEffect(() => {
