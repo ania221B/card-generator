@@ -25,24 +25,15 @@
 2. Choose a theme and avatar to personalize your article card.
 3. Generate card, which includes the calculated read time and a snippet of the article content - it will appear below the form.
 
-## Project Status
-
-Cardify is an ongoing project. Currently, most of the core functionality is implemented, including theme selection and card generation. However, there are still areas for improvement, such as:
-
-- Adding previews for themes and avatars.
-- Replacing the default image with customizable options.
-- Refining the design and user experience.
-
-Feedback is welcome!
-
 # Useful resources
 
-- [Pure CSS Custom Styled Radio Buttons](https://moderncss.dev/pure-css-custom-styled-radio-buttons/) - an article by [Stephanie Eckles](https://thinkdobecreate.com/) explaining how to add custom styling to a radio button
+- [Pure CSS Custom Styled Radio Buttons](https://moderncss.dev/pure-css-custom-styled-radio-buttons/) - great article by [Stephanie Eckles](https://thinkdobecreate.com/) explaining how to add custom styling to a radio button
 - [CSS Background Pattern Generator](https://10015.io/tools/css-background-pattern-generator) - one in a buldle of super useful tools that gets you gradients for different fun patterns
+- [The Ultimate Guide to React Click Outside Modal to Close](https://www.dhiwise.com/post/the-ultimate-guide-to-react-click-outside-modal-to-close) - awesome guide that helped me build the modal
+- [How to Perform Form Validation in React ](https://dev.to/obere4u/how-to-perform-form-validation-in-react-3kgi) - very detailed article that helped me with form validation
 
 # Acknowledgements
 
 - Inspired by [Kevin Powell](https://www.kevinpowell.co/)'s newsletter on making your frontend projects stand out.
 - I used this great tool created by [Fatih Telis](https://github.com/fatihtelis) to generate patterns for avatars.
 - Built with [React.js](https://reactjs.org/) and [SCSS](https://sass-lang.com/).
--
