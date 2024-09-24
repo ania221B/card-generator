@@ -14,12 +14,26 @@ function App () {
     isModalOpen,
     modalRef,
     handleClickOutside,
+    closeDialog,
     defaultTheme,
     applyTheme
   } = useGlobalContext()
 
   useEffect(() => {
-    isModalOpen ? modalRef.current.showModal() : modalRef.current.close()
+    if (isModalOpen) {
+      modalRef.current.showModal()
+      modalRef.current.setAttribute('data-state', 'opened')
+    } else {
+      modalRef.current.setAttribute('data-state', 'is-closing')
+    }
+
+    document.body.addEventListener('animationend', closeDialog, { once: true })
+
+    return () => {
+      document.body.removeEventListener('animationend', closeDialog, {
+        once: true
+      })
+    }
   }, [isModalOpen])
 
   useEffect(() => {

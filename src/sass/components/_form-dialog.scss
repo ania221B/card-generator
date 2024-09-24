@@ -17,6 +17,41 @@ dialog {
     }
     border-radius: $br-medium;
 
+    &::backdrop {
+      @include get-nested-theme() {
+        background-color: rgba(themify(bg-main), 0.95);
+      }
+      opacity: 0.95;
+    }
+
+    &[data-state='opened'] {
+      animation: revealDialog;
+      animation-duration: 600ms;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+
+      &::backdrop {
+        animation: fadeInBackdrop;
+        animation-duration: 600ms;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+      }
+    }
+
+    &[data-state='is-closing'] {
+      animation: hideDialog;
+      animation-duration: 600ms;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
+
+      &::backdrop {
+        animation: fadeOutBackdrop;
+        animation-duration: 600ms;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+    }
+
     .error {
       display: grid;
       grid-auto-flow: rows;
@@ -40,11 +75,47 @@ dialog {
 
     padding: 1.5em * 1.5;
   }
+}
 
-  &::backdrop {
-    @include get-nested-theme() {
-      background-color: rgba(themify(bg-main), 0.95);
-    }
+@keyframes revealDialog {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hideDialog {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+@keyframes fadeInBackdrop {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
     opacity: 0.95;
+  }
+}
+
+@keyframes fadeOutBackgrop {
+  0% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0;
   }
 }

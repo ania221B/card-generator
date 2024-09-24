@@ -318,6 +318,16 @@ function AppContext ({ children }) {
   }
 
   /**
+   * Closes the modal
+   * @param {AnimationEvent} e End of animation that hides the modal
+   */
+  function closeDialog (e) {
+    if (e.animationName === 'hideDialog') {
+      modalRef.current.close()
+    }
+  }
+
+  /**
    * Applies color theme to body
    */
   function applyTheme () {
@@ -354,6 +364,7 @@ function AppContext ({ children }) {
         makeHyphenatedLowerCase,
         makeCapitalizedText,
         handleClickOutside,
+        closeDialog,
         applyTheme
       }}
     >
