@@ -8,6 +8,8 @@ body {
   font-family: $ff-secondary;
   font-weight: $fw-400;
   font-size: fs(400);
+  background-color: #1c1b22;
+  color: #dadade;
   @include get-theme() {
     background-color: themify(bg-main);
     color: themify(text-clr);
