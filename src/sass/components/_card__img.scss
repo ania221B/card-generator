@@ -2,9 +2,10 @@
 
 .card__img {
   border-radius: inherit;
-  height: 100%;
+  min-width: 10rem;
   width: 100%;
-  aspect-ratio: 3 / 2;
+  min-height: 15rem;
+  height: 100%;
 }
 
 .bg-diamonds,
