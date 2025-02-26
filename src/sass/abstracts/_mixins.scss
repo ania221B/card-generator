@@ -4,23 +4,47 @@
 @use 'breakpoints' as *;
 @use 'themes' as *;
 
-@mixin mq($size) {
+@function check-size($size, $name: 'breakpoint') {
   @if (map.has-key($breakpoints, $size)) {
-    $breakpoint: map.get($breakpoints, $size);
-    @media screen and (min-width: $breakpoint) {
-      @content;
-    }
+    @return map.get($breakpoints, $size);
   } @else if (meta.type-of($size) == number) {
     @if (math.is-unitless($size)) {
-      @error 'Provided value of #{$size} has no unit';
+      @return 'The value of #{$size} you provided for #{$name} is a number but has no unit. Please use a unit';
     } @else {
-      $breakpoint: $size;
-      @media screen and (min-width: $breakpoint) {
-        @content;
-      }
+      @return $size;
     }
   } @else {
-    @error 'Provided value of #{$size} is not in the $breakponts map. Use a value from $breakpoints map or a number with a unit';
+    @return 'The value of #{$size} you provided for #{$name} is not a key in the map. Please use a key from the map or a number with a unit';
+  }
+}
+
+@mixin mq($breakpoint-1, $min-or-max: min-width, $breakpoint-2: 0em) {
+  $check-1: check-size($breakpoint-1, 'breakpoint-1');
+  @if (meta.type-of($check-1) == string) {
+    @error $check-1;
+  }
+
+  $size-1: $check-1;
+  @if ($min-or-max == min-width) {
+    @media screen and (min-width: $size-1) {
+      @content;
+    }
+  } @else if ($min-or-max == max-width) {
+    @media screen and (max-width: $size-1) {
+      @content;
+    }
+  } @else if ($min-or-max == between) {
+    $check-2: check-size($breakpoint-2, 'breakpoint-2');
+    @if (meta.type-of($check-2) == string) {
+      @error $check-2;
+    }
+
+    $size-2: $check-2;
+    @media screen and (min-width: $size-1) and (max-width: $size-2) {
+      @content;
+    }
+  } @else {
+    @error 'The value of #{$min-or-max} you provided for $min-or-max is invalid. Please use min-width, max-width or between';
   }
 }
 
