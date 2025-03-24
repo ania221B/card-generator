@@ -40,19 +40,20 @@
 }
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-align: center;
   text-decoration: none;
 
   background: none;
   border: none;
   cursor: pointer;
 
-  padding-block: 0.5em;
+  padding-block: 0.75em;
   padding-inline: clamp(2em, 2em + 1vw, 4em);
   border-radius: $br-medium;
-
-  display: grid;
-  place-items: center;
 
   position: relative;
   isolation: isolate;
@@ -112,6 +113,8 @@
 }
 
 .link-button[button-type='outline'] {
+  display: grid;
+  align-items: center;
   padding-block: 0.125em;
   padding-inline: 1.25em;
   text-transform: capitalize;
