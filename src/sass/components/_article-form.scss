@@ -9,10 +9,7 @@
     padding-inline: $card-padding * 2;
     padding-block: $card-padding * 3;
     border-radius: $br-medium;
-
-    @include get-nested-theme() {
-      background-image: themify(form-bg-gradient);
-    }
+    background-image: var(--form-bg-gradient);
     display: grid;
     position: relative;
 
@@ -20,9 +17,7 @@
       content: '';
       position: absolute;
       inset: -1px;
-      @include get-nested-theme() {
-        background-image: themify(card-bg-gradient);
-      }
+      background-image: var(--card-bg-gradient);
       border-radius: inherit;
       z-index: -1;
     }
@@ -63,16 +58,13 @@
     }
 
     &::after {
-      @include get-nested-theme() {
-        background-color: rgba(themify(text-clr), 0.5);
-      }
+      background-color: var(--text-clr);
+      opacity: 0.5;
       transition: opacity 600ms ease-out;
     }
 
     &::before {
-      @include get-nested-theme() {
-        background-image: themify(form-hover-gradient);
-      }
+      background-image: var(--form-hover-gradient);
       transform: scaleX(0);
       transition: transform 400ms ease-out;
     }
@@ -96,9 +88,7 @@
   legend {
     font-size: fs(300);
     font-weight: $fw-400;
-    @include get-nested-theme() {
-      color: themify(form-accent-clr);
-    }
+    color: var(--form-accent-clr);
     text-transform: uppercase;
   }
 
@@ -118,9 +108,7 @@
 
   input,
   textarea {
-    @include get-nested-theme() {
-      color: themify(text-clr);
-    }
+    color: var(--text-clr);
   }
 
   input:focus-visible,
@@ -133,14 +121,11 @@
     appearance: none;
     background-color: none;
     margin: 0;
-    @include get-nested-theme() {
-      color: themify(form-accent-clr);
-    }
+    color: var(--form-accent-clr);
     width: 1.125em;
     height: 1.125em;
-    @include get-nested-theme() {
-      border: 0.0625em solid themify(form-accent-clr);
-    }
+
+    border: 0.0625em solid var(--form-accent-clr);
 
     display: grid;
     place-content: center;
@@ -152,9 +137,7 @@
     height: 0.5625em;
     transform: scale(0);
     transition: 200ms transform ease-in-out;
-    @include get-nested-theme() {
-      box-shadow: inset 1em 1em themify(form-accent-clr);
-    }
+    box-shadow: inset 1em 1em var(--form-accent-clr);
   }
 
   input[type='radio']:checked::before {
@@ -174,10 +157,8 @@
 
   select {
     appearance: none;
-    @include get-nested-theme() {
-      color: themify(form-accent-clr);
-    }
     background-color: inherit;
+    color: var(--form-accent-clr);
   }
 
   .error {

@@ -10,17 +10,15 @@ dialog {
     position: absolute;
     inset: 0;
     margin: auto;
-    @include get-nested-theme() {
-      background-image: themify(form-bg-gradient);
-      color: themify(form-accent-clr);
-      border: 1px solid themify(form-accent-clr);
-    }
+
+    background-image: var(--form-bg-gradient);
+    color: var(--form-accent-clr);
+    border: 1px solid var(--form-accent-clr);
+
     border-radius: $br-medium;
 
     &::backdrop {
-      @include get-nested-theme() {
-        background-color: rgba(themify(bg-main), 0.95);
-      }
+      background-color: var(--bg-main);
       opacity: 0.95;
     }
 
@@ -56,9 +54,7 @@ dialog {
       display: grid;
       grid-auto-flow: rows;
       gap: $grid-gap * 1.5;
-      @include get-nested-theme() {
-        color: themify(form-accent-clr);
-      }
+      color: var(--form-accent-clr);
 
       svg {
         justify-self: center;

@@ -8,16 +8,24 @@
   --flow-spacer: 1.25em;
   min-width: $card-min-width;
   max-width: $card-max-width;
-  @include get-nested-theme {
-    color: themify(text-clr);
-    background-image: themify(card-bg-gradient);
-  }
+
+  color: var(--text-clr);
+  background-image: var(--card-bg-gradient);
+
   padding-inline: $card-padding;
   padding-block: $card-padding;
   border-radius: $br-medium;
 
   display: grid;
   grid-auto-flow: row;
+
+  &__img {
+    border-radius: inherit;
+    min-width: 10rem;
+    width: 100%;
+    min-height: 15rem;
+    height: 100%;
+  }
 
   &__content * + h2 {
     margin-top: 0.25em;

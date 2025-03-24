@@ -74,43 +74,31 @@
   }
 
   &[button-type='primary'] {
-    @include get-nested-theme() {
-      background-color: themify(button-bg);
-      color: themify(button-text);
-    }
+    background-color: var(--button-bg);
+    color: var(--button-text);
     &::before {
       inset: 0;
-      @include get-nested-theme() {
-        background-color: themify(button-hover-bg);
-      }
+      background-color: var(--button-hover-bg);
     }
     &:hover,
     &:focus {
-      @include get-nested-theme() {
-        color: themify(button-hover-text);
-      }
+      color: var(--button-hover-text);
     }
   }
 
   &[button-type='outline'] {
     background-color: transparent;
-    @include get-nested-theme() {
-      border: 1px solid themify(button-outline);
-      color: themify(button-outline);
-    }
+    border: 1px solid var(--button-outline);
+    color: var(--button-outline);
 
     &::before {
       inset: -1px;
-      @include get-nested-theme() {
-        background-color: themify(button-outline);
-      }
+      background-color: var(--button-outline);
     }
 
     &:hover,
     &:focus {
-      @include get-nested-theme() {
-        color: themify(button-hover-text);
-      }
+      color: var(--button-hover-text);
     }
   }
 
@@ -127,12 +115,11 @@
   padding-block: 0.125em;
   padding-inline: 1.25em;
   text-transform: capitalize;
+  background-color: transparent;
 
-  @include get-nested-theme {
-    border: 2px solid themify(card-button-outline);
-    background-color: transparent;
-    color: themify(card-button-outline);
-  }
+  border: 2px solid var(--card-button-outline);
+  background-color: transparent;
+  color: var(--card-button-outline);
 
   grid-template-columns: max-content 0.5em 1.5em;
   will-change: color, grid-template-columns;
@@ -146,15 +133,11 @@
     inset: -1px;
     width: calc(100% + 2px);
     height: calc(100% + 2px);
-    @include get-nested-theme {
-      background-color: themify(card-button-outline);
-    }
+    background-color: var(--card-button-outline);
   }
 
   &:hover {
     grid-template-columns: max-content 1.25em 1.5em;
-    @include get-nested-theme {
-      color: themify(card-button-hover-text);
-    }
+    color: var(--card-button-hover-text);
   }
 }

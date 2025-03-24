@@ -2,9 +2,7 @@
 
 * {
   scrollbar-width: thin;
-  @include get-theme() {
-    scrollbar-color: themify(scrollbar-thumb-clr) themify(scrollbar-track-clr);
-  }
+  scrollbar-color: var(--scrollbar-thumb-clr) var(--scrollbar-track-clr);
 }
 
 ::-webkit-scrollbar {
@@ -13,15 +11,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @include get-theme() {
-    background: themify(scrollbar-thumb-clr);
-  }
+  background: var(--scrollbar-thumb-clr);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-track {
-  @include get-theme() {
-    background-color: themify(scrollbar-track-clr);
-  }
+  background-color: var(--scrollbar-track-clr);
+
   border-radius: 5px;
 }
 

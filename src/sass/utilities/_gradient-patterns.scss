@@ -1,0 +1,15 @@
+@use '../abstracts/' as *;
+
+.bg-diamonds,
+.bg-long-bars,
+.bg-wind-rose,
+.bg-peppers,
+.bg-hypnotic,
+.bg-broken-dots,
+.bg-spaghetti {
+  --bg-size: 64px;
+
+  .article-form__radio-wrapper & {
+    --bg-size: 10px;
+  }
+}

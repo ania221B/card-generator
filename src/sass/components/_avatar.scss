@@ -10,62 +10,7 @@
   .article-form__radio-wrapper & {
     --size: 2.25rem;
     justify-self: end;
-    @include get-nested-theme() {
-      border-color: themify(form-accent-clr);
-    }
     border-radius: $br-medium;
-  }
-}
-
-.bg-chequered {
-  @include get-nested-theme {
-    background-image: repeating-conic-gradient(
-      themify(bg-dark) 0% 25%,
-
-      themify(bg-light) 0% 50%
-    );
-  }
-  background-size: 10px 10px;
-}
-
-.bg-polka-dot {
-  @include get-nested-theme {
-    background-color: themify(bg-light);
-    background-image: radial-gradient(themify(bg-dark) 2px, transparent 2px),
-      radial-gradient(themify(bg-dark) 2px, transparent 2px);
-  }
-  background-position: 0 0, 5px 5px;
-  background-size: 10px 10px;
-}
-
-.bg-carpet {
-  @include get-nested-theme {
-    background: conic-gradient(
-          from -45deg,
-          themify(bg-dark) 90deg,
-          #0000 0 180deg,
-          themify(bg-light) 0 270deg,
-          #0000 0
-        )
-        0 calc(10px / 2) / 10px 10px,
-      conic-gradient(
-          from 135deg at 50% 0,
-          themify(bg-dark) 90deg,
-          themify(bg-light) 0
-        )
-        0 0 / calc(2 * 10px) 10px;
-  }
-}
-
-.bg-diagonal-stripes {
-  @include get-nested-theme {
-    background-image: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 5px,
-      themify(bg-light) 5px,
-      themify(bg-light) 10px
-    );
-    background-color: themify(bg-dark);
+    border-color: var(--form-accent-clr);
   }
 }

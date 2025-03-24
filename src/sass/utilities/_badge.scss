@@ -7,10 +7,8 @@
   line-height: 1;
   padding-block: 0.35em;
   padding-inline: 1.125em;
-  @include get-nested-theme {
-    background-color: themify(card-accent);
-    color: themify(text-clr);
-  }
+  background-color: var(--card-accent);
+  color: var(--text-clr);
   border-radius: $br-medium;
   min-width: fit-content;
 }

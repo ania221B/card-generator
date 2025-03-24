@@ -1,14 +1,16 @@
 @use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
 @use 'themes' as *;
 @use 'typography' as *;
 @use 'sizes' as *;
-@use 'mixins' as *;
 
 @function clr($color, $shade) {
   @if map.has-key($themes, $color, $shade) {
     @return map.get($themes, $color, $shade);
   } @else {
-    @error '$colors does not have that color!';
+    $colors: map.get($themes, $color);
+    @error '$themes map does not have that color! Available colors: #{map.keys($colors)}';
   }
 }
 
@@ -16,7 +18,7 @@
   @if map.has-key($font-sizes, $font-size) {
     @return map.get($font-sizes, $font-size);
   } @else {
-    @error '$font-sizes does not have that size!';
+    @error '$font-sizes map does not have that size! Available font sizes: #{map.keys($font-sizes)}';
   }
 }
 
@@ -24,14 +26,6 @@
   @if map.has-key($sizes, $size) {
     @return map.get($sizes, $size);
   } @else {
-    @error '$sizes does not have that size!';
-  }
-}
-
-@function themify($key) {
-  @if map.has-key($theme-map, $key) {
-    @return map.get($theme-map, $key);
-  } @else {
-    @error '$theme-map does not have that key!';
+    @error '$sizes map does not have that size! Available sizes: #{map.keys($sizes)}';
   }
 }

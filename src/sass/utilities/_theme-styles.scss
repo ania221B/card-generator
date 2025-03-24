@@ -1,0 +1,10 @@
+@use '../abstracts/' as *;
+
+@each $theme, $colors in $card-themes {
+  .#{$theme} {
+    @include gradient-patterns($theme);
+    @each $key, $value in $colors {
+      --#{$key}: #{$value};
+    }
+  }
+}

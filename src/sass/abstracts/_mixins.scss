@@ -48,41 +48,260 @@
   }
 }
 
-@mixin get-theme() {
-  @each $theme, $map in $card-themes {
-    &.#{$theme} {
-      $theme-map: () !global;
-      @each $key, $submap in $map {
-        $value: map.get(map.get($card-themes, $theme), '#{$key}');
-        $theme-map: map.merge(
-          $theme-map,
-          (
-            $key: $value,
-          )
-        ) !global;
-      }
-      @content;
-      $theme-map: null !global;
-    }
-  }
-}
+@mixin gradient-patterns($theme) {
+  $bg-dark: map.get(map.get($card-themes, $theme), 'bg-dark');
+  $bg-light: map.get(map.get($card-themes, $theme), 'bg-light');
 
-@mixin get-nested-theme() {
-  @each $theme, $map in $card-themes {
-    .#{$theme} & {
-      $theme-map: () !global;
-      @each $key, $submap in $map {
-        $value: map.get(map.get($card-themes, $theme), '#{$key}');
-        $theme-map: map.merge(
-          $theme-map,
-          (
-            $key: $value,
-          )
-        ) !global;
-      }
-      @content;
-      $theme-map: null !global;
-    }
+  // avatar gradient patterns
+
+  .bg-chequered {
+    background-image: repeating-conic-gradient(
+      $bg-dark 0% 25%,
+      $bg-light 0% 50%
+    );
+    background-size: 10px 10px;
+  }
+
+  .bg-polka-dot {
+    background-color: $bg-light;
+    background-image: radial-gradient($bg-dark 2px, transparent 2px),
+      radial-gradient($bg-dark 2px, transparent 2px);
+    background-position: 0 0, 5px 5px;
+    background-size: 10px 10px;
+  }
+
+  .bg-carpet {
+    background: conic-gradient(
+          from -45deg,
+          $bg-dark 90deg,
+          #0000 0 180deg,
+          $bg-light 0 270deg,
+          #0000 0
+        )
+        0 calc(10px / 2) / 10px 10px,
+      conic-gradient(from 135deg at 50% 0, $bg-dark 90deg, $bg-light 0) 0 0 /
+        calc(2 * 10px) 10px;
+  }
+
+  .bg-diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 5px,
+      $bg-light 5px,
+      $bg-light 10px
+    );
+    background-color: $bg-dark;
+  }
+
+  // card image gradient patterns
+  .bg-diamonds {
+    background: linear-gradient(
+        45deg,
+        #0000 calc(25% / 3),
+        $bg-dark 0 calc(50% / 3),
+        #0000 0 calc(250% / 3),
+        $bg-dark 0 calc(275% / 3),
+        #0000 0
+      ),
+      linear-gradient(
+        45deg,
+        $bg-dark calc(25% / 3),
+        #0000 0 calc(50% / 3),
+        $bg-dark 0 25%,
+        #0000 0 75%,
+        $bg-dark 0 calc(250% / 3),
+        #0000 0 calc(275% / 3),
+        $bg-dark 0
+      ),
+      linear-gradient(
+        -45deg,
+        #0000 calc(25% / 3),
+        $bg-dark 0 calc(50% / 3),
+        #0000 0 calc(250% / 3),
+        $bg-dark 0 calc(275% / 3),
+        #0000 0
+      ),
+      linear-gradient(
+          -45deg,
+          $bg-dark calc(25% / 3),
+          #0000 0 calc(50% / 3),
+          $bg-dark 0 25%,
+          #0000 0 75%,
+          $bg-dark 0 calc(250% / 3),
+          #0000 0 calc(275% / 3),
+          $bg-dark 0
+        )
+        $bg-light;
+    background-size: var(--bg-size) var(--bg-size);
+    background-position: 0 0, calc(var(--bg-size) / 2) calc(var(--bg-size) / 2);
+  }
+
+  .bg-long-bars {
+    background: linear-gradient(
+        135deg,
+        #0000 18.75%,
+        $bg-light 0 31.25%,
+        #0000 0
+      ),
+      repeating-linear-gradient(
+        45deg,
+        $bg-light -6.25% 6.25%,
+        $bg-dark 0 18.75%
+      );
+
+    background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2);
+  }
+
+  .bg-wind-rose {
+    background: conic-gradient(
+        from -45deg at calc(100% / 3) calc(100% / 3),
+        $bg-light 90deg,
+        #0000 0
+      ),
+      conic-gradient(
+        from -135deg at calc(100% / 3) calc(2 * 100% / 3),
+        $bg-light 90deg,
+        $bg-dark 0 135deg,
+        #0000 0
+      ),
+      conic-gradient(
+        from 135deg at calc(2 * 100% / 3) calc(2 * 100% / 3),
+        $bg-light 90deg,
+        $bg-dark 0 135deg,
+        #0000 0
+      ),
+      conic-gradient(
+        from 45deg at calc(2 * 100% / 3) calc(100% / 3),
+        $bg-light 90deg,
+        $bg-dark 0 135deg,
+        #0000 0,
+        $bg-light 0 225deg,
+        $bg-dark 0
+      );
+    background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2);
+  }
+
+  .bg-peppers {
+    background: radial-gradient(
+          calc(1.28 * var(--bg-size) + calc(var(--bg-size) * 0.375) / 2) at left
+            50% bottom calc(-0.8 * var(--bg-size)),
+          $bg-dark calc(100% - calc(var(--bg-size) * 0.375)),
+          $bg-light calc(101% - calc(var(--bg-size) * 0.375)) 100%,
+          #0000 101%
+        )
+        calc(2 * var(--bg-size))
+        calc(-1 * calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375))),
+      radial-gradient(
+          calc(1.28 * var(--bg-size) + calc(var(--bg-size) * 0.375) / 2) at left
+            50% bottom calc(-0.8 * var(--bg-size)),
+          var(--bg-accent) calc(100% - calc(var(--bg-size) * 0.375)),
+          $bg-light calc(101% - calc(var(--bg-size) * 0.375)) 100%,
+          #0000 101%
+        )
+        calc(-1 * var(--bg-size))
+        calc(calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375)) / -2),
+      radial-gradient(
+          calc(1.28 * var(--bg-size) + calc(var(--bg-size) * 0.375) / 2) at left
+            50% top calc(-0.8 * var(--bg-size)),
+          var(--bg-accent) calc(100% - calc(var(--bg-size) * 0.375)),
+          $bg-light calc(101% - calc(var(--bg-size) * 0.375)) 100%,
+          #0000 101%
+        )
+        0 calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375)),
+      radial-gradient(
+          calc(1.28 * var(--bg-size) + calc(var(--bg-size) * 0.375) / 2) at left
+            50% top calc(-0.8 * var(--bg-size)),
+          $bg-dark calc(100% - calc(var(--bg-size) * 0.375)),
+          $bg-light calc(101% - calc(var(--bg-size) * 0.375)) 100%,
+          #0000 101%
+        )
+        var(--bg-size)
+        calc(calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375)) / 2),
+      linear-gradient($bg-dark 50%, var(--bg-accent) 0);
+    background-size: calc(4 * var(--bg-size))
+      calc(1.5 * var(--bg-size) + calc(var(--bg-size) * 0.375));
+  }
+
+  .bg-hypnotic {
+    background: radial-gradient(
+          100% 100% at 100% 100%,
+          #0000 46%,
+          $bg-light 47% 53%,
+          #0000 54%
+        )
+        var(--bg-size) var(--bg-size),
+      radial-gradient(100% 100% at 0 0, #0000 46%, $bg-light 47% 53%, #0000 54%)
+        var(--bg-size) var(--bg-size),
+      radial-gradient(
+          100% 100%,
+          #0000 22%,
+          $bg-light 23% 29%,
+          #0000 30% 34%,
+          $bg-light 35% 41%,
+          #0000 42%
+        )
+        $bg-dark;
+    background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2);
+  }
+
+  .bg-broken-dots {
+    background: radial-gradient($bg-light 49%, #0000 50%)
+        calc(var(--bg-size) / -2) calc(var(--bg-size) / 2),
+      repeating-conic-gradient(from 45deg, $bg-dark 0 25%, #0000 0 50%)
+        calc(var(--bg-size) / 2) calc(var(--bg-size) / 2),
+      radial-gradient($bg-light 49%, #0000 50%),
+      radial-gradient($bg-light 49%, #0000 50%) var(--bg-size) var(--bg-size)
+        $bg-dark;
+
+    background-size: calc(2 * var(--bg-size)) calc(2 * var(--bg-size));
+  }
+
+  .bg-spaghetti {
+    background: radial-gradient(
+        at bottom right,
+        $bg-dark 0,
+        $bg-dark calc(var(--bg-size) * 0.25),
+        rgba($bg-dark, 0.2) calc(var(--bg-size) * 0.25),
+        rgba($bg-dark, 0.2) calc(var(--bg-size) * 0.5),
+        rgba($bg-dark, 0.75) calc(var(--bg-size) * 0.5),
+        rgba($bg-dark, 0.75) calc(var(--bg-size) * 0.75),
+        rgba($bg-dark, 0.25) calc(var(--bg-size) * 0.75),
+        rgba($bg-dark, 0.25) calc(var(--bg-size) * 1),
+        rgba($bg-dark, 0.3) calc(var(--bg-size) * 1),
+        rgba($bg-dark, 0.3) calc(var(--bg-size) * 1.25),
+        rgba($bg-dark, 0.75) calc(var(--bg-size) * 1.25),
+        rgba($bg-dark, 0.75) calc(var(--bg-size) * 1.5),
+        rgba($bg-dark, 0.2) calc(var(--bg-size) * 1.5),
+        rgba($bg-dark, 0.2) calc(var(--bg-size) * 1.75),
+        transparent calc(var(--bg-size) * 1.75),
+        transparent calc(var(--bg-size) * 2)
+      ),
+      radial-gradient(
+        at top left,
+        transparent 0,
+        transparent calc(var(--bg-size) * 0.25),
+        rgba($bg-dark, 0.2) calc(var(--bg-size) * 0.25),
+        rgba($bg-dark, 0.2) calc(var(--bg-size) * 0.5),
+        rgba($bg-dark, 0.75) calc(var(--bg-size) * 0.5),
+        rgba($bg-dark, 0.75) calc(var(--bg-size) * 0.75),
+        rgba($bg-dark, 0.3) calc(var(--bg-size) * 0.75),
+        rgba($bg-dark, 0.3) calc(var(--bg-size) * 1),
+        rgba($bg-dark, 0.25) calc(var(--bg-size) * 1),
+        rgba($bg-dark, 0.25) calc(var(--bg-size) * 1.25),
+        rgba($bg-dark, 0.75) calc(var(--bg-size) * 1.25),
+        rgba($bg-dark, 0.75) calc(var(--bg-size) * 1.5),
+        rgba($bg-dark, 0.2) calc(var(--bg-size) * 1.5),
+        rgba($bg-dark, 0.2) calc(var(--bg-size) * 1.75),
+        $bg-dark calc(var(--bg-size) * 1.75),
+        rgba($bg-dark, 1) calc(var(--bg-size) * 2),
+        transparent calc(var(--bg-size) * 2),
+        transparent calc(var(--bg-size) * 4)
+      );
+    background-color: $bg-light;
+    background-blend-mode: multiply;
+    background-size: calc(var(--bg-size) * 2) calc(var(--bg-size) * 2),
+      calc(var(--bg-size) * 2) calc(var(--bg-size) * 2);
   }
 }
 
