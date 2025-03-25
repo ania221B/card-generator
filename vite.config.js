@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import htmlPurge from 'vite-plugin-purgecss'
+import purgecss from 'vite-plugin-purgecss-updated-v5'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/card-generator/',
   plugins: [
     react(),
-    htmlPurge({
+    purgecss({
       content: ['./src/**/*.jsx', './src/**/*.scss'],
       safelist: [/^bg-/]
     })
