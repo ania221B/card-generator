@@ -2,9 +2,9 @@ import { useGlobalContext } from '../context'
 import FormError from './FormError'
 
 function FormDialog () {
-  const { modalRef, setIsModalOpen } = useGlobalContext()
+  const { modalState, modalRef, closeDialog } = useGlobalContext()
   return (
-    <dialog ref={modalRef}>
+    <dialog ref={modalRef} data-state={modalState}>
       <div className='dialog__content'>
         <FormError error='Some form fields are blank. Please go through the form and fill in missing information'></FormError>
         <button
@@ -12,7 +12,7 @@ function FormDialog () {
           className='button'
           button-type='primary'
           aria-label='Close the dialog'
-          onClick={() => setIsModalOpen(false)}
+          onClick={closeDialog}
         >
           Close
         </button>

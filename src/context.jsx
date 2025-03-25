@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid'
-import { createContext, useContext, useRef, useState } from 'react'
+import { createContext, useCallback, useContext, useRef, useState } from 'react'
 
 const GlobalContext = createContext()
 export function useGlobalContext () {
@@ -44,6 +44,7 @@ function AppContext ({ children }) {
     bodyError: '',
     authorError: ''
   })
+  const [modalState, setModalState] = useState('closed')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const modalRef = useRef(null)
 
@@ -155,7 +156,7 @@ function AppContext ({ children }) {
       }, 300)
       setFormErrors({})
     } else {
-      setIsModalOpen(true)
+      openDialog()
     }
   }
 
@@ -306,6 +307,44 @@ function AppContext ({ children }) {
   }
 
   /**
+   * Opens the modal
+   */
+  function openDialog () {
+    if (!modalRef.current) return
+
+    setIsModalOpen(true)
+    modalRef.current.showModal()
+    setModalState('opened')
+  }
+
+  /**
+   * Triggers the closing of the modal and enables the animation to run
+   */
+  function closeDialog () {
+    if (!modalRef.current) return
+
+    setIsModalOpen(false)
+    setModalState('is-closing')
+    modalRef.current.addEventListener('animationend', disableDialog)
+  }
+
+  /**
+   * Closes the modal
+   * @param {AnimationEvent} e End of animation that hides the modal
+   */
+  function disableDialog (e) {
+    if (e.animationName === 'hideDialog') {
+      setModalState('closed')
+      modalRef.current.close()
+      modalRef.current.removeEventListener('animationend', disableDialog)
+    }
+  }
+
+  const toggleDialog = useCallback(() => {
+    isModalOpen ? closeDialog() : openDialog()
+  }, [isModalOpen])
+
+  /**
    * Closes the modal when user clicks outside of it
    * @param {MouseEvent} e Click event occurring outside the modal
    */
@@ -313,17 +352,7 @@ function AppContext ({ children }) {
     const modalContent = modalRef.current.querySelector('.dialog__content')
 
     if (modalRef.current && !modalContent.contains(e.target)) {
-      setIsModalOpen(false)
-    }
-  }
-
-  /**
-   * Closes the modal
-   * @param {AnimationEvent} e End of animation that hides the modal
-   */
-  function closeDialog (e) {
-    if (e.animationName === 'hideDialog') {
-      modalRef.current.close()
+      closeDialog()
     }
   }
 
@@ -363,8 +392,12 @@ function AppContext ({ children }) {
         getFormatedDate,
         makeHyphenatedLowerCase,
         makeCapitalizedText,
+        modalState,
         handleClickOutside,
         closeDialog,
+        openDialog,
+        toggleDialog,
+        disableDialog,
         applyTheme
       }}
     >
