@@ -6,12 +6,14 @@ import pluginPurgeCss from 'vite-plugin-purgecss-updated-v5'
 export default defineConfig({
   base: '/card-generator/',
   plugins: [
-    react()
-    // pluginPurgeCss({
-    //   content: ['./src/**/*.jsx', './src/**/*.scss'],
-    //   safelist: {
-    //     standard: [/^bg-/, 'flow']
-    //   }
-    // })
+    react(),
+    pluginPurgeCss({
+      content: ['./src/**/*.jsx', './src/**/*.scss'],
+      safelist: {
+        standard: ['flow'],
+        deep: [/flow/],
+        greedy: [/^bg-/, /^flow$/]
+      }
+    })
   ]
 })
