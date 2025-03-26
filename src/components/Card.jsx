@@ -13,9 +13,9 @@ function Card ({ article }) {
   } = article
   return (
     <article className={`${theme} card-wrapper`}>
-      <div className='card flow'>
+      <div className='card'>
         <div className={`card__img bg-${image}`}></div>
-        <div className='card__content'>
+        <div className='card__content flow'>
           <header>
             <div className='card__content__meta'>
               <p className='category badge'>{category}</p>
