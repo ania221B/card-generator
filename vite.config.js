@@ -8,11 +8,12 @@ export default defineConfig({
   plugins: [
     react(),
     pluginPurgeCss({
-      content: ['./src/**/*.jsx', './src/**/*.scss', './src/**/*.html'],
+      content: ['./src/**/*.jsx', './src/**/*.scss'],
       safelist: {
         standard: ['flow'],
         deep: [/flow/],
-        greedy: [/^bg-/, /^flow$/]
+        greedy: [/^bg-/, /^flow$/],
+        defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
       }
     })
   ]
