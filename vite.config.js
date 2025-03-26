@@ -9,7 +9,9 @@ export default defineConfig({
     react(),
     pluginPurgeCss({
       content: ['./src/**/*.jsx', './src/**/*.scss'],
-      safelist: [/^bg-/, 'flow']
+      safelist: {
+        standard: [/^bg-/, 'flow']
+      }
     })
   ]
 })
