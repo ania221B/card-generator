@@ -1,19 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import pluginPurgeCss from 'vite-plugin-purgecss-updated-v5'
+import purgecss from 'vite-plugin-purgecss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/card-generator/',
   plugins: [
     react(),
-    pluginPurgeCss({
+    purgecss({
       content: ['./src/**/*.jsx', './src/**/*.scss'],
       safelist: {
-        standard: ['flow'],
-        deep: [/flow/],
-        greedy: [/^bg-/, /^flow$/],
-        defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
+        standard: [/^bg-/, 'flow']
       }
     })
   ]
