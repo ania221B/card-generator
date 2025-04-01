@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 function FormError ({ error }) {
   return (
     <div className='error'>
@@ -18,4 +20,4 @@ function FormError ({ error }) {
     </div>
   )
 }
-export default FormError
+export default memo(FormError)

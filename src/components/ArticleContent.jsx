@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useGlobalContext } from '../context'
 import FormError from './FormError'
 
@@ -37,4 +38,4 @@ function ArticleContent () {
     </section>
   )
 }
-export default ArticleContent
+export default memo(ArticleContent)

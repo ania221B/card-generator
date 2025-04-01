@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useGlobalContext } from '../context'
 import { categoryList } from '../data/data'
 import CategoryOption from './CategoryOption'
@@ -47,4 +48,4 @@ function ArticleInfo () {
     </section>
   )
 }
-export default ArticleInfo
+export default memo(ArticleInfo)

@@ -1,23 +1,27 @@
 import { useGlobalContext } from '../context'
+import { memo } from 'react'
+import Button from './Button'
 import FormError from './FormError'
 
 function FormDialog () {
-  const { modalState, modalRef, closeDialog } = useGlobalContext()
+  const { modalState, modalRef, closeDialog, formErrors } = useGlobalContext()
+  const formHasErrors = Object.values(formErrors).some(value => value !== '')
+
   return (
     <dialog ref={modalRef} data-state={modalState}>
       <div className='dialog__content'>
-        <FormError error='Some form fields are blank. Please go through the form and fill in missing information'></FormError>
-        <button
+        {formHasErrors && (
+          <FormError error='Some form fields are blank. Please go through the form and fill in missing information'></FormError>
+        )}
+        <Button
           type='button'
-          className='button'
-          button-type='primary'
-          aria-label='Close the dialog'
+          buttonStyle='primary'
+          label='Close the dialog'
+          content='Close'
           onClick={closeDialog}
-        >
-          Close
-        </button>
+        ></Button>
       </div>
     </dialog>
   )
 }
-export default FormDialog
+export default memo(FormDialog)

@@ -1,169 +1,63 @@
+import { useMemo } from 'react'
 import { useGlobalContext } from '../context'
+import { navigationButtons } from '../data/data'
 import ArticleAvatar from './ArticleAvatar'
 import ArticleContent from './ArticleContent'
 import ArticleImage from './ArticleImage'
 import ArticleInfo from './ArticleInfo'
 import ArticleTheme from './ArticleTheme'
+import Buttons from './Buttons'
 
 function ArticleForm () {
-  const { step, handleSubmission, displayPrevStep, displayNextStep } =
-    useGlobalContext()
-  if (step === 1) {
-    return (
-      <form
-        action='#'
-        autoComplete='false'
-        className='article-form'
-        onSubmit={handleSubmission}
-      >
-        <div className='article-form__wrapper'>
-          <ArticleInfo></ArticleInfo>
-          <div className='button-wrapper'>
-            <div className='buttons'>
-              <button
-                type='button'
-                onClick={displayNextStep}
-                className='button next-button'
-                button-type='primary'
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
+  const { step, handleSubmission, getButtonOnClick } = useGlobalContext()
+
+  const filteredButtons = useMemo(() => {
+    if (step === 1) {
+      return navigationButtons.filter(
+        button =>
+          button.navigation === 'form' &&
+          button.action !== 'prev' &&
+          button.content !== 'Generate'
+      )
+    } else if (step === 5) {
+      return navigationButtons.filter(
+        button => button.navigation === 'form' && button.action !== 'next'
+      )
+    }
+
+    return navigationButtons.filter(
+      button => button.navigation === 'form' && button.content !== 'Generate'
     )
-  }
-  if (step === 2) {
-    return (
-      <form
-        action='#'
-        autoComplete='false'
-        className='article-form'
-        onSubmit={handleSubmission}
-      >
-        <div className='article-form__wrapper'>
-          <ArticleContent></ArticleContent>
-          <div className='button-wrapper'>
-            <div className='buttons'>
-              <button
-                type='button'
-                onClick={displayPrevStep}
-                className='button back-button'
-                button-type='outline'
-              >
-                Back
-              </button>
-              <button
-                type='button'
-                onClick={displayNextStep}
-                className='button next-button'
-                button-type='primary'
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-    )
-  }
-  if (step === 3) {
-    return (
-      <form
-        action='#'
-        autoComplete='false'
-        className='article-form'
-        onSubmit={handleSubmission}
-      >
-        <div className='article-form__wrapper'>
-          <ArticleTheme></ArticleTheme>
-          <div className='button-wrapper'>
-            <div className='buttons'>
-              <button
-                type='button'
-                onClick={displayPrevStep}
-                className='button back-button'
-                button-type='outline'
-              >
-                Back
-              </button>
-              <button
-                type='button'
-                onClick={displayNextStep}
-                className='button next-button'
-                button-type='primary'
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-    )
-  }
-  if (step === 4) {
-    return (
-      <form
-        action='#'
-        autoComplete='false'
-        className='article-form'
-        onSubmit={handleSubmission}
-      >
-        <div className='article-form__wrapper'>
-          <ArticleAvatar></ArticleAvatar>
-          <div className='button-wrapper'>
-            <div className='buttons'>
-              <button
-                type='button'
-                onClick={displayPrevStep}
-                className='button back-button'
-                button-type='outline'
-              >
-                Back
-              </button>
-              <button
-                type='button'
-                onClick={displayNextStep}
-                className='button next-button'
-                button-type='primary'
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-    )
-  }
-  if (step === 5) {
-    return (
-      <form
-        action='#'
-        autoComplete='false'
-        className='article-form'
-        onSubmit={handleSubmission}
-      >
-        <div className='article-form__wrapper'>
-          <ArticleImage></ArticleImage>
-          <div className='button-wrapper'>
-            <div className='buttons'>
-              <button
-                type='button'
-                onClick={displayPrevStep}
-                className='button back-button'
-                button-type='outline'
-              >
-                Back
-              </button>
-              <button className='button' type='submit' button-type='primary'>
-                Generate
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
-    )
-  }
+  }, [step])
+
+  return (
+    <form
+      action='#'
+      autoComplete='false'
+      className='article-form'
+      onSubmit={handleSubmission}
+    >
+      <div className='article-form__wrapper'>
+        {step === 1 && <ArticleInfo></ArticleInfo>}
+        {step === 2 && <ArticleContent></ArticleContent>}
+        {step === 3 && <ArticleTheme></ArticleTheme>}
+        {step === 4 && <ArticleAvatar></ArticleAvatar>}
+        {step === 5 && <ArticleImage></ArticleImage>}
+
+        <Buttons
+          buttons={filteredButtons.map(button => {
+            const buttonAction = getButtonOnClick(
+              button.action,
+              button.navigation
+            )
+            return {
+              ...button,
+              onClick: buttonAction
+            }
+          })}
+        ></Buttons>
+      </div>
+    </form>
+  )
 }
 export default ArticleForm

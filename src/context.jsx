@@ -1,5 +1,12 @@
 import { nanoid } from 'nanoid'
-import { createContext, useCallback, useContext, useRef, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 
 const GlobalContext = createContext()
 export function useGlobalContext () {
@@ -163,20 +170,20 @@ function AppContext ({ children }) {
   /**
    * Displays next page/screen by increasing the value of page variable
    */
-  function displayNextPage () {
+  const displayNextPage = useCallback(() => {
     setPage(currentPage => {
       return currentPage + 1
     })
-  }
+  }, [page])
 
   /**
    * Displays previous page/screen by decreasing the value of page variable
    */
-  function displayPreviousPage () {
+  const displayPreviousPage = useCallback(() => {
     setPage(currentPage => {
       return currentPage - 1
     })
-  }
+  }, [page])
 
   /**
    * Increases the value of step variable
@@ -199,18 +206,40 @@ function AppContext ({ children }) {
   /**
    * Displays next form step by preventing default behaviour and increasing the value of step variable
    */
-  function displayNextStep (e) {
-    e.preventDefault()
-    increaseStep()
-  }
+  const displayNextStep = useCallback(
+    e => {
+      e.preventDefault()
+      increaseStep()
+    },
+    [step]
+  )
 
   /**
    * Displays previous form step by preventing default behaviour and decreasing the value of step variable
    */
-  function displayPrevStep (e) {
-    e.preventDefault()
-    decreaseStep()
-  }
+  const displayPrevStep = useCallback(
+    e => {
+      e.preventDefault()
+      decreaseStep()
+    },
+    [step]
+  )
+
+  /**
+   * Determines function to be executed on button click
+   * @param {String} action action property from button object
+   * @param {String} navigation navigation property from button object
+   * @returns function to be executed when button is clicked
+   */
+  const getButtonOnClick = useCallback(
+    (action, navigation) => {
+      if (action === 'prev') {
+        return navigation === 'screen' ? displayPreviousPage : displayPrevStep
+      }
+      return navigation === 'screen' ? displayNextPage : displayNextStep
+    },
+    [displayNextPage, displayPreviousPage, displayNextStep, displayPrevStep]
+  )
 
   /**
    * Shortens article text to first 25 words and applies ellipsis at the end if appropriate
@@ -363,46 +392,83 @@ function AppContext ({ children }) {
     document.body.classList.add(`${defaultTheme}`)
   }
 
+  const values = useMemo(
+    () => ({
+      page,
+      setPage,
+      step,
+      setStep,
+      article,
+      setArticle,
+      defaultArticle,
+      setDefaultArticle,
+      defaultTheme,
+      setDefaultTheme,
+      articleList,
+      setArticleList,
+      formErrors,
+      setFormErrors,
+      isModalOpen,
+      setIsModalOpen,
+      modalRef,
+      handleChange,
+      handleSubmission,
+      displayNextPage,
+      displayPreviousPage,
+      displayNextStep,
+      displayPrevStep,
+      getButtonOnClick,
+      getFormatedDate,
+      makeHyphenatedLowerCase,
+      makeCapitalizedText,
+      modalState,
+      handleClickOutside,
+      closeDialog,
+      openDialog,
+      toggleDialog,
+      disableDialog,
+      applyTheme
+    }),
+    [
+      page,
+      setPage,
+      step,
+      setStep,
+      article,
+      setArticle,
+      defaultArticle,
+      setDefaultArticle,
+      defaultTheme,
+      setDefaultTheme,
+      articleList,
+      setArticleList,
+      formErrors,
+      setFormErrors,
+      isModalOpen,
+      setIsModalOpen,
+      modalRef,
+      handleChange,
+      handleSubmission,
+      displayNextPage,
+      displayPreviousPage,
+      displayNextStep,
+      displayPrevStep,
+      getButtonOnClick,
+      getFormatedDate,
+      makeHyphenatedLowerCase,
+      makeCapitalizedText,
+      modalState,
+      handleClickOutside,
+      closeDialog,
+      openDialog,
+      toggleDialog,
+      disableDialog,
+      applyTheme
+    ]
+  )
+
   return (
-    <GlobalContext.Provider
-      value={{
-        page,
-        setPage,
-        step,
-        setStep,
-        article,
-        setArticle,
-        defaultArticle,
-        setDefaultArticle,
-        defaultTheme,
-        setDefaultTheme,
-        articleList,
-        setArticleList,
-        formErrors,
-        setFormErrors,
-        isModalOpen,
-        setIsModalOpen,
-        modalRef,
-        handleChange,
-        handleSubmission,
-        displayNextPage,
-        displayPreviousPage,
-        displayNextStep,
-        displayPrevStep,
-        getFormatedDate,
-        makeHyphenatedLowerCase,
-        makeCapitalizedText,
-        modalState,
-        handleClickOutside,
-        closeDialog,
-        openDialog,
-        toggleDialog,
-        disableDialog,
-        applyTheme
-      }}
-    >
-      {children}
-    </GlobalContext.Provider>
+    <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>
   )
 }
 
