@@ -3,11 +3,14 @@ import { imageList } from '../data/data'
 import RadioItem from './RadioItem'
 import { nanoid } from 'nanoid'
 
-function ArticleImage () {
+function ArticleImage ({ totalSteps }) {
   const { step, article } = useGlobalContext()
+
   return (
     <section>
-      <h2>Step {step} of 5: Image</h2>
+      <h2>
+        Step {step} of {totalSteps}: Image
+      </h2>
       <fieldset>
         <legend>Choose an image</legend>
 

@@ -1,19 +1,13 @@
 import { useEffect } from 'react'
 import FormDialog from './components/FormDialog'
-import { useGlobalContext } from './context'
 import Welcome from './screens/Welcome'
 import Form from './screens/Form'
 import Cards from './screens/Cards'
+import { useGlobalContext } from './context'
 
 function App () {
-  const {
-    page,
-    formErrors,
-    isModalOpen,
-    handleClickOutside,
-    defaultTheme,
-    applyTheme
-  } = useGlobalContext()
+  const { isModalOpen, handleClickOutside, page, applyTheme, defaultTheme } =
+    useGlobalContext()
 
   useEffect(() => {
     if (isModalOpen) {

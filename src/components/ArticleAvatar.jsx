@@ -3,11 +3,14 @@ import { avatarList } from '../data/data'
 import RadioItem from './RadioItem'
 import { nanoid } from 'nanoid'
 
-function ArticleAvatar () {
+function ArticleAvatar ({ totalSteps }) {
   const { step, article } = useGlobalContext()
+
   return (
     <section>
-      <h2>Step {step} of 4: Avatar</h2>
+      <h2>
+        Step {step} of {totalSteps}: Avatar
+      </h2>
       <fieldset>
         <legend>Choose an avatar</legend>
 

@@ -33,6 +33,11 @@
     margin-top: 0.5em;
   }
 
+  &__content header + p {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   &__content__meta {
     display: grid;
     grid-auto-flow: column;

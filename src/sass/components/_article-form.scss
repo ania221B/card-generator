@@ -21,6 +21,15 @@
       border-radius: inherit;
       z-index: -1;
     }
+
+    & > * {
+      opacity: 0;
+      animation-name: showContent;
+      animation-duration: 500ms;
+      animation-delay: 500ms;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
+    }
   }
 
   h2 {
@@ -152,7 +161,8 @@
   }
 
   textarea {
-    width: 100%;
+    max-width: 100%;
+    resize: block;
   }
 
   select {
@@ -178,5 +188,14 @@
     fieldset {
       grid-template-columns: 1fr;
     }
+  }
+}
+
+@keyframes showContent {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

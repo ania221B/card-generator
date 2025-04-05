@@ -1,7 +1,7 @@
-import { useGlobalContext } from '../context'
 import { memo } from 'react'
 import Button from './Button'
 import FormError from './FormError'
+import { useGlobalContext } from '../context'
 
 function FormDialog () {
   const { modalState, modalRef, closeDialog, formErrors } = useGlobalContext()

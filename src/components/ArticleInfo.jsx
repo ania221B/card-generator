@@ -1,17 +1,19 @@
 import { memo } from 'react'
-import { useGlobalContext } from '../context'
 import { categoryList } from '../data/data'
 import CategoryOption from './CategoryOption'
 import { nanoid } from 'nanoid'
 import FormError from './FormError'
+import { useGlobalContext } from '../context'
 
-function ArticleInfo () {
+function ArticleInfo ({ totalSteps }) {
   const { step, article, handleChange, formErrors } = useGlobalContext()
   const { category, author } = article
 
   return (
     <section>
-      <h2>Step {step} of 4: Article Info</h2>
+      <h2>
+        Step {step} of {totalSteps}: Article Info
+      </h2>
       <div className='article-form__control-wrapper'>
         <label htmlFor='article-category'>Category:</label>
 
@@ -19,7 +21,7 @@ function ArticleInfo () {
           name='category'
           id='article-category'
           value={category}
-          onChange={e => handleChange(e)}
+          onChange={e => handleChange(e.target)}
         >
           {categoryList.map(item => {
             return (
@@ -39,7 +41,9 @@ function ArticleInfo () {
           type='text'
           name='author'
           value={author}
-          onChange={e => handleChange(e)}
+          onChange={e => {
+            handleChange(e.target)
+          }}
         />
         {formErrors.authorError && (
           <FormError error={formErrors.authorError}></FormError>

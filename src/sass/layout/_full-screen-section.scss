@@ -7,28 +7,36 @@
   height: 100%;
   display: grid;
   align-items: center;
-  z-index: 0;
+  // opacity: 0;
+  transition: opacity 500ms ease-in-out;
 
-  .container > * {
+  &.fade-in {
+    opacity: 1;
+  }
+
+  .fade-in > * {
     opacity: 0;
-    transform: translateY(3.5rem);
-    transition: opacity 1000ms ease-in-out 200ms,
-      transform 700ms ease-in-out 100ms;
+    animation-name: revealContent;
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
   }
 
-  .container > *:last-child {
-    transition: opacity 1200ms ease-in-out 500ms,
-      transform 900ms ease-in-out 350ms;
+  .fade-in > *:last-child {
+    animation-name: revealContent;
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 500ms;
   }
 }
 
-.hidden {
-  opacity: 0;
-  z-index: -1;
-}
-
-.reveal {
-  .container > * {
+@keyframes revealContent {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
   }

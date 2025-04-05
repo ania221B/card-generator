@@ -2,16 +2,19 @@ import ArticleList from '../components/ArticleList'
 import { useGlobalContext } from '../context'
 
 function Cards () {
-  const { page, displayPreviousPage } = useGlobalContext()
+  const { displayPreviousPage, triggerAnimation } = useGlobalContext()
   return (
     <section
-      className={
-        page === 3
-          ? 'section section--full-screen reveal'
-          : 'section section--full-screen hidden'
-      }
+      className={`section section--full-screen ${
+        triggerAnimation ? 'fade-in' : ''
+      }`}
     >
-      <div className='container grid-row' data-container='large'>
+      <div
+        className={
+          triggerAnimation ? 'container grid-row fade-in' : 'container grid-row'
+        }
+        data-container='large'
+      >
         <ArticleList></ArticleList>
         <div className='button-wrapper container' data-container='small'>
           <div className='buttons'>

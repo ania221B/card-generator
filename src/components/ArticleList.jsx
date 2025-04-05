@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
-import { useGlobalContext } from '../context'
 import Card from './Card'
+import { useGlobalContext } from '../context'
 
 function ArticleList () {
   const { articleList } = useGlobalContext()

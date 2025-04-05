@@ -3,10 +3,12 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState
 } from 'react'
+import { useDebounce } from '@uidotdev/usehooks'
 
 const GlobalContext = createContext()
 export function useGlobalContext () {
@@ -14,6 +16,7 @@ export function useGlobalContext () {
 }
 
 function AppContext ({ children }) {
+  const [triggerAnimation, setTriggerAnimation] = useState(false)
   const [page, setPage] = useState(1)
   const [step, setStep] = useState(1)
   const [defaultTheme, setDefaultTheme] = useState('soft-purple')
@@ -54,13 +57,15 @@ function AppContext ({ children }) {
   const [modalState, setModalState] = useState('closed')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const modalRef = useRef(null)
+  const [inputChange, setInputChange] = useState({ name: '', value: '' })
+  const debouncedValue = useDebounce(inputChange, 500)
 
   /**
    * Chceks if there are any fields with no value
    * @param {Object} article An object with data inputted by user
    * @returns {Array} Error messages for any missing fields
    */
-  function validateForm (article) {
+  const validateForm = useCallback(article => {
     const { category, title, body, author } = article
     const errors = {}
     if (!category.trim()) {
@@ -79,16 +84,28 @@ function AppContext ({ children }) {
       errors.authorError = `Please provide article author's name`
     }
     return errors
-  }
+  }, [])
+  /**
+   * Updates the article variable with data inputed by user, sets data for validation
+   * @param {Object} item Object with name and value properties
+   */
+  const handleChange = useCallback(item => {
+    const { name, value } = item
+
+    setArticle(article => ({ ...article, [name]: value }))
+
+    if (name === 'theme' || name === 'image' || name === 'avatar') return
+
+    setInputChange({ name, value })
+  }, [])
 
   /**
-   * Updates the article variable with data inputed by user, validates the data and updates error state
-   * @param {InputEvent} e The input change event object
+   * Validates form and updates existing errors
    */
-  function handleChange (e) {
-    const { name, value } = e.target
+  useEffect(() => {
+    if (!debouncedValue.name) return
 
-    setArticle({ ...article, [name]: value })
+    const { name, value } = debouncedValue
 
     const existingErrors = { ...formErrors }
     const updatedArticle = { ...article, [name]: value }
@@ -111,7 +128,7 @@ function AppContext ({ children }) {
       ...prevErrors,
       [`${name}Error`]: ''
     }))
-  }
+  }, [debouncedValue])
 
   /**
    * Handles submission of form data
@@ -168,22 +185,24 @@ function AppContext ({ children }) {
   }
 
   /**
-   * Displays next page/screen by increasing the value of page variable
+   * Displays next page/screen by increasing the value of page variable and triggers validation
    */
   const displayNextPage = useCallback(() => {
     setPage(currentPage => {
       return currentPage + 1
     })
-  }, [page])
+    setTriggerAnimation(true)
+  }, [])
 
   /**
-   * Displays previous page/screen by decreasing the value of page variable
+   * Displays previous page/screen by decreasing the value of page variable and triggers validation
    */
   const displayPreviousPage = useCallback(() => {
     setPage(currentPage => {
       return currentPage - 1
     })
-  }, [page])
+    setTriggerAnimation(true)
+  }, [])
 
   /**
    * Increases the value of step variable
@@ -206,24 +225,16 @@ function AppContext ({ children }) {
   /**
    * Displays next form step by preventing default behaviour and increasing the value of step variable
    */
-  const displayNextStep = useCallback(
-    e => {
-      e.preventDefault()
-      increaseStep()
-    },
-    [step]
-  )
+  const displayNextStep = useCallback(_ => {
+    increaseStep()
+  }, [])
 
   /**
    * Displays previous form step by preventing default behaviour and decreasing the value of step variable
    */
-  const displayPrevStep = useCallback(
-    e => {
-      e.preventDefault()
-      decreaseStep()
-    },
-    [step]
-  )
+  const displayPrevStep = useCallback(_ => {
+    decreaseStep()
+  }, [])
 
   /**
    * Determines function to be executed on button click
@@ -231,12 +242,18 @@ function AppContext ({ children }) {
    * @param {String} navigation navigation property from button object
    * @returns function to be executed when button is clicked
    */
+
   const getButtonOnClick = useCallback(
-    (action, navigation) => {
-      if (action === 'prev') {
-        return navigation === 'screen' ? displayPreviousPage : displayPrevStep
+    (action, navigation) => e => {
+      if (navigation === 'form') {
+        e.preventDefault()
       }
-      return navigation === 'screen' ? displayNextPage : displayNextStep
+
+      if (navigation === 'screen') {
+        return action === 'prev' ? displayPreviousPage() : displayNextPage()
+      } else {
+        return action === 'prev' ? displayPrevStep() : displayNextStep()
+      }
     },
     [displayNextPage, displayPreviousPage, displayNextStep, displayPrevStep]
   )
@@ -248,6 +265,9 @@ function AppContext ({ children }) {
    */
   function shortenText (text) {
     const textPortion = text.split(' ').slice(0, 26)
+    if (textPortion.length === 1) {
+      return textPortion
+    }
     const lastWord = textPortion[textPortion.length - 1]
     const lastWordIndex = text.indexOf(lastWord)
     const shortText = text.substring(0, lastWordIndex).trim()
@@ -369,6 +389,9 @@ function AppContext ({ children }) {
     }
   }
 
+  /**
+   * Executes appropriate function depending on modal state
+   */
   const toggleDialog = useCallback(() => {
     isModalOpen ? closeDialog() : openDialog()
   }, [isModalOpen])
@@ -427,7 +450,11 @@ function AppContext ({ children }) {
       openDialog,
       toggleDialog,
       disableDialog,
-      applyTheme
+      applyTheme,
+      triggerAnimation,
+      setTriggerAnimation,
+      inputChange,
+      setInputChange
     }),
     [
       page,
@@ -463,7 +490,11 @@ function AppContext ({ children }) {
       openDialog,
       toggleDialog,
       disableDialog,
-      applyTheme
+      applyTheme,
+      triggerAnimation,
+      setTriggerAnimation,
+      inputChange,
+      setInputChange
     ]
   )
 

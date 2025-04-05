@@ -11,6 +11,7 @@ function Card ({ article }) {
     avatar,
     image
   } = article
+
   return (
     <article className={`${theme} card-wrapper`}>
       <div className='card'>
@@ -28,6 +29,7 @@ function Card ({ article }) {
             </div>
             <h2 className='ff-secondary fs-800'>{title}</h2>
           </header>
+
           <p>{body}</p>
           <footer>
             <div className='card__content__author'>

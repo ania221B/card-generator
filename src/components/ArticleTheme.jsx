@@ -3,11 +3,14 @@ import { themeList } from '../data/data'
 import RadioItem from './RadioItem'
 import { nanoid } from 'nanoid'
 
-function ArticleTheme () {
+function ArticleTheme ({ totalSteps }) {
   const { step, article } = useGlobalContext()
+
   return (
     <section>
-      <h2>Step {step} of 4: Article Theme</h2>
+      <h2>
+        Step {step} of {totalSteps}: Article Theme
+      </h2>
       <fieldset>
         <legend>Choose a theme</legend>
 

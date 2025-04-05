@@ -10,7 +10,7 @@ function RadioItem ({ item, itemName, itemType, children }) {
         name={itemType}
         id={`${itemName}-avatar`}
         value={itemName}
-        onChange={e => handleChange(e)}
+        onChange={e => handleChange(e.target)}
         checked={item === itemName}
       />
       <label htmlFor={`${itemName}-avatar`}>{upperCaseName}</label>

@@ -1,20 +1,26 @@
+import { useEffect, useState } from 'react'
 import Button from '../components/Button'
 import Card from '../components/Card'
 import { useGlobalContext } from '../context'
 import { navigationButtons } from '../data/data'
 
 function Welcome () {
-  const { page, defaultArticle, getButtonOnClick } = useGlobalContext()
+  const { defaultArticle, getButtonOnClick } = useGlobalContext()
+  const [showAnimation, setShowAnimation] = useState(false)
+
+  useEffect(() => {
+    setShowAnimation(true)
+  })
   return (
     <section
-      className={
-        page === 1
-          ? 'section section--full-screen reveal'
-          : 'section section--full-screen hidden'
-      }
-      //   className='section section--full-screen reveal'
+      className={`section section--full-screen ${
+        showAnimation ? 'fade-in' : ''
+      }`}
     >
-      <div className='container columns'>
+      <div
+        className={`container columns
+          ${showAnimation ? 'fade-in' : ''}`}
+      >
         <header className='grid-row'>
           <h1 className='main-title'>Cardify</h1>
           <p className='text-center'>
