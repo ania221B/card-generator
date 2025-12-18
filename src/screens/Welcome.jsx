@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import Button from '../components/Button'
 import Card from '../components/Card'
 import { useGlobalContext } from '../context'
@@ -8,9 +8,9 @@ function Welcome () {
   const { defaultArticle, getButtonOnClick } = useGlobalContext()
   const [showAnimation, setShowAnimation] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setShowAnimation(true)
-  })
+  }, [])
   return (
     <section
       className={`section section--full-screen ${

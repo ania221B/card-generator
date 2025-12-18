@@ -7,11 +7,11 @@
   height: 100%;
   display: grid;
   align-items: center;
-  // opacity: 0;
-  transition: opacity 500ms ease-in-out;
+  opacity: 0;
 
   &.fade-in {
     opacity: 1;
+    transition: opacity 500ms ease-in-out;
   }
 
   .fade-in > * {
